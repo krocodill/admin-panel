@@ -1,0 +1,7 @@
+.adminpanel{
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    margin-left: 48px;
+    margin-right: 48px;
+}
