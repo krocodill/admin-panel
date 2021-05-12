@@ -1,0 +1,41 @@
+@import url(../../index.css);
+
+.searchbar{
+    border: 1px solid #459DF5;
+    display: flex;
+    flex-direction: row;
+    height: 32px;
+    border-radius: 4px;
+    width: 320px;
+}
+
+.inputwithicon{
+    border: none;
+    flex: 1;
+    outline: none;
+    color: var(--color-black);
+}
+
+.inputwithicon::placeholder{
+    color: var(--color-blue);
+}
+
+.searchicon{
+    mask: url("../../icons/search.svg");
+    background: var(--color-blue);
+    height: 16px;
+    width: 16px;
+    margin: 8px;
+}
+
+.closeicon{
+    mask: url("../../icons/x-medium.svg");
+    background: #BAD8F5;
+    height: 16px;
+    width: 16px;
+    margin: 8px;
+}
+
+.inputwithicon:not(:valid) ~ .closeicon {
+    display: none;
+}
