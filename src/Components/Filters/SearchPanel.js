@@ -5,7 +5,8 @@ import { Button } from "../Buttons/Button";
 function SearchPanel(){
     return(
         <div className={styles.searchpanel}>
-            <SearchInput/>
+            <SearchInput placeholder="Номер заказа или ФИО"
+            />
             <div className={styles.buttonfilter}>
                 <Button text="Фильтры"
                         icon="filter"
