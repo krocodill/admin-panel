@@ -1,6 +1,6 @@
 import styles from "./MainFilters.module.css"
-import SearchPanel from "./SearchPanel";
-import ReloadPanel from "./ReloadPanel";
+import { SearchPanel } from "./SearchPanel";
+import { ReloadPanel } from "./ReloadPanel";
 
 function MainFilters(){
     return(
@@ -12,4 +12,4 @@ function MainFilters(){
 
 }
 
-export default MainFilters;
+export { MainFilters };

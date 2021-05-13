@@ -1,16 +1,19 @@
 import styles from "./SearchPanel.module.css";
-import SearchInput from "../SearchBar/SearchInput";
-import SolidButtonWithIcon from "../Buttons/SolidButtonWithIcon";
+import { SearchInput } from "../SearchBar/SearchInput";
+import { Button } from "../Buttons/Button";
 
 function SearchPanel(){
     return(
         <div className={styles.searchpanel}>
             <SearchInput/>
             <div className={styles.buttonfilter}>
-                <SolidButtonWithIcon/>
+                <Button text="Фильтры"
+                        icon="filter"
+                        type="solid"
+                />
             </div>
         </div>
     );
 }
 
-export default SearchPanel;
+export { SearchPanel };

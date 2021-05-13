@@ -8,4 +8,4 @@ function Tables(){
     );
 }
 
-export default Tables;
+export { Tables };

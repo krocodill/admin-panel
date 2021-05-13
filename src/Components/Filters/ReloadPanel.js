@@ -1,15 +1,13 @@
-import styles from "./ReloadPanel.module.css"
+import { Button } from "../Buttons/Button";
 
 function ReloadPanel(){
     return(
-        <div className={styles.reloadpanel}>
-            <div className={styles.button}>
-                <span className={styles.buttonIcon}></span>
-                <p>Загрузка</p>
-            </div>
-        </div>
+        <Button type="transporent"
+                text="Загрузка"
+                icon="refresh"
+        />
 
     );
 }
 
-export default ReloadPanel;
+export { ReloadPanel };

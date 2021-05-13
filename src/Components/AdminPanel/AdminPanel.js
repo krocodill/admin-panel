@@ -1,7 +1,7 @@
-import Header from "../Header/Header";
+import { Header } from "../Header/Header";
 import styles from "./AdminPanel.module.css"
-import Filters from "../Filters/Filters";
-import Tables from "../Tables/Tables";
+import { Filters } from "../Filters/Filters";
+import { Tables } from "../Tables/Tables";
 
 function AdminPanel() {
     return (
@@ -15,4 +15,4 @@ function AdminPanel() {
 
 }
 
-export default AdminPanel;
+export { AdminPanel };

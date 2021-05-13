@@ -1,12 +1,12 @@
-import styles from "./HeadingButton.module.css"
+import { Button } from "../Buttons/Button";
 
 function HeadingButton(){
     return(
-        <div className={styles.button}>
-            <span className={styles.buttonIcon}></span>
-            <p>Светлая тема</p>
-        </div>
+        <Button type="transporent"
+                text="Светлая тема"
+                icon="sun"
+        />
     );
 }
 
-export default HeadingButton;
+export { HeadingButton };

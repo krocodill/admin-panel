@@ -1,0 +1,43 @@
+.none{
+    display: none;
+}
+
+.filtericon{
+    display: flex;
+    mask: url("../../icons/filter.svg");
+    height: 16px;
+    width: 16px;
+    margin: 0px 8px;
+    align-self: flex-start;
+}
+
+.sunicon{
+    display: flex;
+    mask: url("../../icons/sun.svg");
+    height: 16px;
+    width: 16px;
+    margin: 0px 8px;
+    align-self: flex-start;
+}
+
+.refreshicon{
+    display: flex;
+    mask: url("../../icons/refresh.svg");
+    height: 16px;
+    width: 16px;
+    margin: 0px 8px;
+    align-self: flex-start;
+
+}
+
+.white{
+    background: #FFFFFF;
+}
+
+.primary{
+    background: #459DF5;
+}
+
+.secondary{
+    background: #000000;
+}

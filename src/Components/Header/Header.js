@@ -1,5 +1,5 @@
-import Heading from "./Heading";
-import HeadingButton from "./HeadingButton";
+import { Heading } from "./Heading";
+import { HeadingButton } from "./HeadingButton";
 import styles from "./Header.module.css"
 
 function Header(){
@@ -12,4 +12,4 @@ function Header(){
 
 }
 
-export default Header;
+export { Header };

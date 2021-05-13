@@ -1,5 +1,5 @@
 import styles from "./Filters.module.css"
-import MainFilters from "./MainFilters";
+import { MainFilters } from "./MainFilters";
 
 function Filters(){
     return(
@@ -11,4 +11,4 @@ function Filters(){
     );
 }
 
-export default Filters;
+export { Filters };
