@@ -1,7 +1,6 @@
 .solidbutton{
     border: none;
     display: flex;
-    flex-direction: row;
     border-radius: 4px;
     width: fit-content;
     background: #459DF5;
@@ -10,13 +9,11 @@
 .transparentbutton{
     border: none;
     display: flex;
-    flex-direction: row;
     background: transparent;
 }
 
 .buttonwhite{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     background: transparent;
     border: none;
@@ -26,7 +23,6 @@
 
 .buttonprimary{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     background: transparent;
     border: none;
@@ -36,7 +32,6 @@
 
 .buttonsecondary{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     background: transparent;
     border: none;
