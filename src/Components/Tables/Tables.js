@@ -1,6 +1,6 @@
 import styles from "./Tables.module.css";
 
-function Tables() {
+export function Tables() {
   return (
     <div className={styles.tables}>
       <div className={[styles.tablerow, styles.tableheader].join(" ")}>
@@ -249,5 +249,3 @@ function Tables() {
     </div>
   );
 }
-
-export { Tables };

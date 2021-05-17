@@ -24,7 +24,7 @@ export function SearchInput(props) {
 
   return (
     <div className={styles.searchBar}>
-      <span className={styles.searchIcon}></span>
+      <span className={styles.searchIcon} />
       <input
         type="text"
         value={Value}
