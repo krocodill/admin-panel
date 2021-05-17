@@ -1,25 +1,17 @@
-import styles from "./Icon.module.css"
+import styles from "./Icon.module.css";
+import React from "react";
+import classNames from "classnames/bind";
 
-const IconTypes = {
-    none: styles.none,
-    filter: styles.filtericon,
-    sun: styles.sunicon,
-    refresh: styles.refreshicon
+export function Icon(props) {
+  const IconName = "icon" + (props.icon ? props.icon : "None");
+  const ColorName = props.color ? props.color : "primary";
+  const cx = classNames.bind(styles);
+
+  const styleTypeIcon = cx({
+    [IconName]: true,
+    [styles.white]: ColorName === "white",
+    [styles.primary]: ColorName === "primary",
+    [styles.secondary]: ColorName === "secondary",
+  });
+  return <i className={styleTypeIcon}></i>;
 }
-
-const IconColor = {
-    white: styles.white,
-    primary: styles.primary,
-    secondary: styles.secondary
-}
-
-function Icon(props){
-    const typeIcon = props.icon ? props.icon : "none";
-    const styleTypeIcon = IconTypes[typeIcon];
-    const styleColorIcon = props.color ? IconColor[props.color] : styles.primary;
-    return(
-        <i className={[styleTypeIcon, styleColorIcon].join(" ")}></i>
-    );
-}
-
-export { Icon };

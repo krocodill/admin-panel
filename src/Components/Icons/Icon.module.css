@@ -1,8 +1,8 @@
-.none{
+.iconNone{
     display: none;
 }
 
-.filtericon{
+.iconFilter{
     display: flex;
     mask: url("../../icons/filter.svg");
     height: 16px;
@@ -11,7 +11,7 @@
     align-self: flex-start;
 }
 
-.sunicon{
+.iconSun{
     display: flex;
     mask: url("../../icons/sun.svg");
     height: 16px;
@@ -20,7 +20,7 @@
     align-self: flex-start;
 }
 
-.refreshicon{
+.iconRefresh{
     display: flex;
     mask: url("../../icons/refresh.svg");
     height: 16px;

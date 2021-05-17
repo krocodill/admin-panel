@@ -1,36 +1,40 @@
-import styles from "./Button.module.css"
-import React from "react";
-import { Icon } from "../Icons/Icon"
+import styles from "./Button.module.css";
+import React, { useState } from "react";
+import { Icon } from "../Icons/Icon";
+import classNames from "classnames/bind";
 
-class Button extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: props.text,
-            icon: props.icon,
-            solid: props.type === "solid" ? true : false,
-            textColor: props.textColor ? props.textColor : "primary",
-            size: props.size ? props.size : "big"
-        };
-    }
+export function Button(props) {
+  const [isSolid] = useState(props.type === "solid");
+  const [isBigSize] = useState(props.size ? props.size === "big" : true);
+  const [isPrimaryTextCollor] = useState(
+    props.textColor ? props.textColor === "primary" : true
+  );
+  const [IconButton] = useState(props.icon);
+  const cx = classNames.bind(styles);
+  const typeButtonStyleName = cx({
+    [styles.solidButton]: isSolid,
+    [styles.transparentButton]: !isSolid,
+    [styles.sizeBig]: isBigSize,
+    [styles.sizeMedium]: !isBigSize,
+  });
+  const textButtonStyleNmae = cx({
+    [styles.buttonWhite]: isSolid,
+    [styles.buttonPrimary]: !isSolid && isPrimaryTextCollor,
+    [styles.buttonSecondary]: !isSolid && !isPrimaryTextCollor,
+  });
 
-    render() {
-        const typeButtonStyleName = this.state.solid ? styles.solidbutton : styles.transparentbutton;
-        const textButtonStyleNmae = this.state.solid ? styles.buttonwhite : this.state.textColor === "primary" ? styles.buttonprimary : styles.buttonsecondary;
-        const textButtonIconColor = this.state.solid ? "white" : this.state.textColor === "primary" ? this.state.textColor : "secondary";
-        const sizeButtonStyleName = this.state.size === "medium" ? styles.sizemedium : styles.sizebig;
-        return(
-            <div className={[typeButtonStyleName, sizeButtonStyleName].join(" ")}>
-                <button className={textButtonStyleNmae}>
-                    <Icon icon={this.state.icon}
-                          color={textButtonIconColor}
-                    />
-                    {this.state.text}
-                </button>
-            </div>
+  const textButtonIconColor = isSolid
+    ? "white"
+    : isPrimaryTextCollor
+    ? props.textColor
+    : "secondary";
 
-        );
-    }
+  return (
+    <div className={typeButtonStyleName}>
+      <button className={textButtonStyleNmae}>
+        <Icon icon={IconButton} color={textButtonIconColor} />
+        {props.children}
+      </button>
+    </div>
+  );
 }
-
-export { Button };

@@ -1,8 +1,14 @@
 .filter{
     display: flex;
     flex-direction: column;
-    height: 32px;
     justify-content: space-between;
     padding-top: 32px;
+}
 
+.test{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    width: 500px;
 }

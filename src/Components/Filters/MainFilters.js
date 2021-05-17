@@ -1,15 +1,14 @@
-import styles from "./MainFilters.module.css"
+import styles from "./MainFilters.module.css";
 import { SearchPanel } from "./SearchPanel";
-import { ReloadPanel } from "./ReloadPanel";
+import { Button } from "../Buttons/Button";
 
-function MainFilters(){
-    return(
-      <div className={styles.mainfilters}>
-          <SearchPanel/>
-          <ReloadPanel/>
-      </div>
-    );
-
+export function MainFilters() {
+  return (
+    <div className={styles.mainFilters}>
+      <SearchPanel />
+      <Button type="transporent" icon="Refresh">
+        Загрузка
+      </Button>
+    </div>
+  );
 }
-
-export { MainFilters };
