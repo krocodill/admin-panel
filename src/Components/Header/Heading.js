@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+import styles from 'Components/Header/Header.module.css';
 
 export function Heading() {
   return (

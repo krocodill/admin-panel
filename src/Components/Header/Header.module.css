@@ -1,6 +1,6 @@
-.header{
-    display: flex;
-    height: 48px;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,54 +1,48 @@
 @import url(../../index.css);
 
-.inputPanel{
-    border: 1px solid #459DF5;
-    flex-direction: row;
-    display: flex;
-    height: 32px;
-    border-radius: 4px;
-    width: 100%;
-    background: #FFFFFF;
+.inputPanel {
+  border: 1px solid #459df5;
+  display: flex;
+  height: 32px;
+  border-radius: 4px;
+  width: 100%;
+  background: #ffffff;
 }
 
-.inputPanelError{
-
-    border: 1px solid #F53152;
-    background: #FFFFFF;
-    flex-direction: row;
-    display: flex;
-    height: 32px;
-    border-radius: 4px;
-    width: 100%;
+.inputPanelError {
+  border: 1px solid #f53152;
+  background: #ffffff;
+  display: flex;
+  height: 32px;
+  border-radius: 4px;
+  width: 100%;
 }
 
-.innerLabel{
-    margin: 8px 4px 8px 8px;
-    align-self: flex-start;
-
+.innerLabel {
+  margin: 8px 4px 8px 8px;
+  align-self: flex-start;
 }
 
-
-.inputWithIcon{
-    border: none;
-    outline: none;
-    color: var(--color-black);
-    width: 90%;
-
+.inputWithIcon {
+  border: none;
+  outline: none;
+  color: var(--color-black);
+  width: 90%;
 }
 
-.inputWithIcon::placeholder{
-    color: var(--color-blue);
+.inputWithIcon::placeholder {
+  color: var(--color-blue);
 }
 
-.closeButton{
-    mask: url("../../icons/x-medium.svg");
-    background: #BAD8F5;
-    height: 16px;
-    width: 16px;
-    margin: 8px;
-    align-self: flex-end;
+.closeButton {
+  mask: url("../../icons/x-medium.svg");
+  background: #bad8f5;
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+  align-self: flex-end;
 }
 
-.closeButtonInvisible{
-    display: none;
+.closeButtonInvisible {
+  display: none;
 }

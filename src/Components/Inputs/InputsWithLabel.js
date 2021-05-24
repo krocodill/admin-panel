@@ -1,6 +1,6 @@
-import styles from "./InputsWithLabel.module.css";
-import { Input } from "./Input";
-import React from "react";
+import styles from 'Components/Inputs/InputsWithLabel.module.css';
+import { Input } from 'Components/Inputs/Input';
+import React from 'react';
 
 export function InputsWithLabel(props) {
   return (
@@ -10,6 +10,7 @@ export function InputsWithLabel(props) {
         type={props.type}
         placeholder={props.placeholder}
         labeltext={props.labeltext}
+        onChange={props.onChange}
       />
     </div>
   );

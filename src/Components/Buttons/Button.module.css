@@ -1,54 +1,53 @@
-.solidButton{
-    border: none;
-    display: flex;
-    border-radius: 4px;
-    background: #459DF5;
-    align-content: center;
-    align-items: stretch;
-
+.solidButton {
+  border: none;
+  display: flex;
+  border-radius: 4px;
+  background: #459df5;
+  align-content: center;
+  align-items: stretch;
 }
 
-.transparentButton{
-    border: none;
-    display: flex;
-    background: transparent;
-    align-content: center;
-    align-items: stretch;
+.transparentButton {
+  border: none;
+  display: flex;
+  background: transparent;
+  align-content: center;
+  align-items: stretch;
 }
 
-.buttonWhite{
-    display: flex;
-    background: transparent;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    margin: auto;
+.buttonWhite {
+  display: flex;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  margin: auto;
 }
 
-.buttonPrimary{
-    display: flex;
-    background: transparent;
-    border: none;
-    color: #459DF5;
-    text-align: center;
-    margin: auto;
+.buttonPrimary {
+  display: flex;
+  background: transparent;
+  border: none;
+  color: #459df5;
+  text-align: center;
+  margin: auto;
 }
 
-.buttonSecondary{
-    display: flex;
-    background: transparent;
-    border: none;
-    color: #000000;
-    text-align: center;
-    margin: auto;
+.buttonSecondary {
+  display: flex;
+  background: transparent;
+  border: none;
+  color: #000000;
+  text-align: center;
+  margin: auto;
 }
 
-.sizeMedium{
-    display: flex;
-    height: 24px;
+.sizeMedium {
+  display: flex;
+  height: 24px;
 }
 
-.sizeBig{
-    display: flex;
-    height: 32px;
+.sizeBig {
+  display: flex;
+  height: 32px;
 }

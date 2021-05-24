@@ -1,43 +1,60 @@
-.iconNone{
-    display: none;
+.iconNone {
+  display: none;
 }
 
-.iconFilter{
-    display: flex;
-    mask: url("../../icons/filter.svg");
-    height: 16px;
-    width: 16px;
-    margin: 0px 8px;
-    align-self: flex-start;
+.iconFilter {
+  display: flex;
+  mask: url("../../icons/filter.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
 }
 
-.iconSun{
-    display: flex;
-    mask: url("../../icons/sun.svg");
-    height: 16px;
-    width: 16px;
-    margin: 0px 8px;
-    align-self: flex-start;
+.iconSun {
+  display: flex;
+  mask: url("../../icons/sun.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
 }
 
-.iconRefresh{
-    display: flex;
-    mask: url("../../icons/refresh.svg");
-    height: 16px;
-    width: 16px;
-    margin: 0px 8px;
-    align-self: flex-start;
-
+.iconRefresh {
+  display: flex;
+  mask: url("../../icons/refresh.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
 }
 
-.white{
-    background: #FFFFFF;
+.iconPencil {
+  display: flex;
+  mask: url("../../icons/pencil.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
 }
 
-.primary{
-    background: #459DF5;
+.iconDelete {
+  display: flex;
+  mask: url("../../icons/bin.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
 }
 
-.secondary{
-    background: #000000;
+.white {
+  background: #ffffff;
+}
+
+.primary {
+  background: #459df5;
+}
+
+.secondary {
+  background: #000000;
 }

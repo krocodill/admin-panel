@@ -1,10 +1,8 @@
 import './App.css';
-import { AdminPanel } from "./Components/AdminPanel/AdminPanel";
+import { AdminPanel } from './Components/AdminPanel/AdminPanel';
 
 function App() {
-  return (
-    <AdminPanel/>
-  );
+  return <AdminPanel />;
 }
 
 export default App;

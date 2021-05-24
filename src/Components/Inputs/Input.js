@@ -1,39 +1,46 @@
-import styles from "./Input.module.css";
-import React, { useState } from "react";
-import classNames from "classnames/bind";
+import styles from 'Components/Inputs/Input.module.css';
+import React, { useState } from 'react';
+import classNames from 'classnames/bind';
 
 export function Input(props) {
-  const [Value, setValue] = useState("");
+  const [Value, setValue] = useState('');
   const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false);
   const [HasError, setHasError] = useState(false);
 
   function handleReset() {
-    setValue("");
+    setValue('');
     setHasError(false);
     setisCloseButtonVisisble(false);
+    if (props.onChange) {
+      props.onChange('');
+    }
   }
 
   function handleChange(event) {
-    if (props.type === "date") {
-      const hasErrorValidate = event.target.value.match(/\d{2}\.\d{2}\.\d{4}/)
-        ? false
-        : true;
+    if (props.type === 'date') {
+      const hasErrorValidate = !event.target.value.match(/\d{2}\.\d{2}\.\d{4}/);
       setValue(event.target.value);
-      setHasError(event.target.value ? hasErrorValidate : false);
+      const hasErroDate = event.target.value ? hasErrorValidate : false;
+      setHasError(hasErroDate);
+      if (props.onChange && !hasErroDate) {
+        props.onChange(event.target.value);
+      }
     } else {
       setValue(event.target.value);
       setHasError(false);
+      if (props.onChange) {
+        props.onChange(event.target.value);
+      }
     }
-    setisCloseButtonVisisble(Value !== "");
+    setisCloseButtonVisisble(Value !== '');
   }
 
-  const cx = classNames.bind(styles);
-  const styleInputBorder = cx({
+  const styleInputBorder = classNames({
     [styles.inputPanelError]: HasError,
     [styles.inputPanel]: !HasError,
   });
 
-  const styleCloseButton = cx({
+  const styleCloseButton = classNames({
     [styles.closeButton]: isCloseButtonVisisble,
     [styles.closeButtonInvisible]: !isCloseButtonVisisble,
   });
@@ -48,7 +55,11 @@ export function Input(props) {
         placeholder={props.placeholder}
         onChange={handleChange}
       />
-      <button onClick={handleReset} className={styleCloseButton} type="reset" />
+      <button
+        onClick={handleReset}
+        className={styleCloseButton}
+        type="reset"
+      />
     </div>
   );
 }

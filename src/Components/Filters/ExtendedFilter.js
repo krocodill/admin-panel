@@ -1,31 +1,41 @@
-import styles from "./ExtendedFilter.module.css";
-import { InputsWithLabel } from "../Inputs/InputsWithLabel";
-import { Input } from "../Inputs/Input";
-import React from "react";
-import { Button } from "../Buttons/Button";
+import styles from 'Components/Filters/ExtendedFilter.module.css';
+import { InputsWithLabel } from 'Components/Inputs/InputsWithLabel';
+import { Input } from 'Components/Inputs/Input';
+import React from 'react';
+import { Button } from 'Components/Buttons/Button';
+import classNames from 'classnames/bind';
+import { useDispatch } from 'react-redux';
+import { filterDateFrom } from 'features/data/dataSlice';
 
-export function ExtendedFilter() {
+export function ExtendedFilter(props) {
+  const dispatch = useDispatch();
+
+  const visiblePanelStyleName = classNames({
+    [styles.panel]: props.visible,
+    [styles.panelInVisible]: !props.visible,
+  });
   return (
-    <div className={styles.panel}>
-      <div className={styles.firstInput}>
+    <div className={visiblePanelStyleName}>
+      <div className={styles.inputDateFrom}>
         <InputsWithLabel
           type="date"
           placeholder="dd.mm.dddd"
           labeltext="с"
           caption="Дата оформления"
+          onChange={(value) => dispatch(filterDateFrom(value))}
         />
       </div>
-      <div className={styles.secondInput}>
+      <div className={styles.inputDateTo}>
         <Input type="date" placeholder="dd.mm.dddd" labeltext="по" />
       </div>
-      <div className={styles.thirdInput}>
+      <div className={styles.inputStatus}>
         <InputsWithLabel
           type="date"
           placeholder="dd.mm.dddd"
           caption="Статус заказа"
         />
       </div>
-      <div className={styles.firstInput}>
+      <div className={styles.inputSummaFrom}>
         <InputsWithLabel
           type="decimal"
           placeholder="Р"
@@ -33,7 +43,7 @@ export function ExtendedFilter() {
           caption="Сумма заказа"
         />
       </div>
-      <div className={styles.secondInput}>
+      <div className={styles.inputSummaTo}>
         <Input type="decimal" placeholder="Р" labeltext="до" />
       </div>
       <div className={styles.buttonApplay}>

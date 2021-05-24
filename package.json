@@ -3,24 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
-    "@testing-library/user-event": "latest",
+    "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^5.12.0",
+    "babel-loader": "^8.1.0",
     "classnames": "latest",
-    "react": "latest",
+    "date-fns": "^2.21.3",
+    "faker": "^5.5.3",
+    "jest-dom": "^4.0.0",
+    "miragejs": "^0.1.41",
+    "react": "^17.0.2",
     "react-dom": "latest",
     "react-redux": "^7.2.4",
     "react-scripts": "^4.0.3",
     "redux": "^4.1.0",
-    "web-vitals": "latest",
-    "yarn": "latest"
+    "seedrandom": "^3.0.5",
+    "txtgen": "^2.2.8",
+    "user-event": "^4.0.0",
+    "web-vitals": "^1.1.2",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix",
+    "prettier": "prettier --write src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -40,20 +50,25 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+
+  },
   "devDependencies": {
-    "eslint": "latest",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-jest-enzyme": "^7.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "latest",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^32.0.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
-  },
-  "lint-staged": {
-    "*.{js, jsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
-      "git add"
-    ]
   }
 }
