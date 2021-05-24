@@ -9,7 +9,10 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
 export const filterOrders = (params) => {
   let result = params.orders;
   if (params.filterFIOorNumber) {
-    result = result.filter((order) => order.fio.indexOf(params.filterFIOorNumber) > -1 || order.number.toString().indexOf(params.filterFIOorNumber) > -1);
+    result = result.filter(
+      (order) => order.fio.indexOf(params.filterFIOorNumber) > -1
+          || order.number.toString().indexOf(params.filterFIOorNumber) > -1,
+    );
   }
   if (params.dateOrderFrom) {
     result = result.filter((order) => {
@@ -58,13 +61,8 @@ export const dataSlice = createSlice({
       state.filtredOrders = filterOrders(state);
       state.currentPage = 1;
     },
-    orderUpdate: (state, action) => {
-      console.log('orderUpdate');
-    },
-    orderDelete: (state, action) => {
-      for (const value of state.selectedOrders) {
-        client.delete(`/fakeApi/orders/${value}`);
-      }
+    orderDelete: (state) => {
+      state.selectedOrders.forEach((order) => client.delete(`/fakeApi/orders/${order}`));
       state.selectedOrders = [];
       state.selectedOrdersCount = state.selectedOrders.length;
     },
@@ -79,24 +77,23 @@ export const dataSlice = createSlice({
       }
       state.selectedOrdersCount = state.selectedOrders.length;
     },
-    orderCheckBoxCheckedAll: (state, action) => {
+    orderCheckBoxCheckedAll: (state) => {
       state.selectedOrders = state.filtredOrders.map((order) => order.id);
       state.selectedOrdersCount = state.selectedOrders.length;
     },
-    orderCheckBoxUnCheckedAll: (state, action) => {
+    orderCheckBoxUnCheckedAll: (state) => {
       state.selectedOrders = [];
       state.selectedOrdersCount = 0;
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
-      console.log(state.currentPage);
     },
     setCountPage: (state, action) => {
       state.allPages = action.payload;
     },
   },
   extraReducers: {
-    [fetchOrders.pending]: (state, action) => {
+    [fetchOrders.pending]: (state) => {
       state.isLoading = true;
       state.isIdle = false;
       state.isSuccess = false;
@@ -126,7 +123,6 @@ export const {
   filterFioOrNumber,
   filterDateFrom,
   setCountPage,
-  orderUpdate,
   orderDelete,
   orderCheckBoxChecked,
   orderCheckBoxUnChecked,

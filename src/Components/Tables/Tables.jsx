@@ -6,7 +6,7 @@ import { TableHeader } from 'Components/Tables/TableHeader';
 import { TableGrid } from 'Components/Tables/TableGrid';
 import { TableFooter } from 'Components/Tables/TableFooter';
 
-export function Tables(props) {
+export function Tables() {
   const dispatch = useDispatch();
   const isIdle = useSelector((state) => state.data.isIdle);
   const orders = useSelector((state) => state.data.filtredOrders);

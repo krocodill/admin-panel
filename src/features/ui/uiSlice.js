@@ -7,13 +7,13 @@ export const uiSlice = createSlice({
     filterVisile: false,
   },
   reducers: {
-    changeToLigth: (state, action) => {
+    changeToLigth: (state) => {
       state.theme = 'light';
     },
-    changeToDark: (state, action) => {
+    changeToDark: (state) => {
       state.theme = 'dark';
     },
-    changeVisibleFilter: (state, action) => {
+    changeVisibleFilter: (state) => {
       state.filterVisile = !state.filterVisile;
     },
   },
