@@ -4,7 +4,7 @@
 
 .iconFilter {
   display: flex;
-  mask: url("../../icons/filter.svg");
+  mask: url("icons/filter.svg");
   height: 16px;
   width: 16px;
   margin: 0px 8px;
@@ -13,7 +13,7 @@
 
 .iconSun {
   display: flex;
-  mask: url("../../icons/sun.svg");
+  mask: url("icons/sun.svg");
   height: 16px;
   width: 16px;
   margin: 0px 8px;

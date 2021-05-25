@@ -1,13 +1,14 @@
-import styles from 'Components/Tables/TableHeader.module.css';
-import { useDispatch } from 'react-redux';
+import styles from 'Components/Tables/TableHeader.module.css'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import {
   orderCheckBoxCheckedAll,
-  orderCheckBoxUnCheckedAll,
-} from 'features/data/dataSlice';
-import { CheckBox } from 'Components/CheckBox/CheckBox';
+  orderCheckBoxUnCheckedAll
+} from 'features/data/dataSlice'
+import { CheckBox } from 'Components/CheckBox/CheckBox'
 
-export function TableHeader() {
-  const dispatch = useDispatch();
+export function TableHeader () {
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.header}>
@@ -39,5 +40,5 @@ export function TableHeader() {
         <p className={styles.text}>ФИО покупателя</p>
       </div>
     </div>
-  );
+  )
 }

@@ -1,25 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
 export const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     theme: 'light',
-    filterVisile: false,
+    filterVisile: false
   },
   reducers: {
     changeToLigth: (state) => {
-      state.theme = 'light';
+      state.theme = 'light'
     },
     changeToDark: (state) => {
-      state.theme = 'dark';
+      state.theme = 'dark'
     },
     changeVisibleFilter: (state) => {
-      state.filterVisile = !state.filterVisile;
-    },
-  },
-});
+      state.filterVisile = !state.filterVisile
+    }
+  }
+})
 
 // Action creators are generated for each case reducer function
-export const { changeToLigth, changeToDark, changeVisibleFilter } = uiSlice.actions;
+export const { changeToLigth, changeToDark, changeVisibleFilter } =
+  uiSlice.actions
 
-export default uiSlice.reducer;
+export default uiSlice.reducer
