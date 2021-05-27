@@ -95,7 +95,7 @@ new Server({
       status() {
         return faker.datatype.number({
           min: 1,
-          max: 4,
+          max: 6,
         })
       },
       positions() {

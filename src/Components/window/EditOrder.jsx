@@ -8,6 +8,7 @@ import { EditOrderTableHeader } from 'Components/window/EditOrderTableHeader'
 import { IconRotate } from 'Components/Icons/IconRotate'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateOrder } from 'features/data/dataSlice'
+import { Select } from 'Components/Inputs/Select'
 import { EditOrderTableGrid } from 'Components/window/EditOrderTableGrid'
 
 export function EditOrder (props) {
@@ -18,6 +19,7 @@ export function EditOrder (props) {
   const { orderForEdit } = props
   const [fio, setfio] = useState('')
   const [status, setstatus] = useState('')
+  const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
 
   const [StyleLoading, setStyleLoading] = useState('')
 
@@ -65,7 +67,7 @@ export function EditOrder (props) {
   }
 
   function handleStatusChange (value) {
-    console.log(value)
+    setstatus(value)
   }
 
   return (
@@ -111,11 +113,10 @@ export function EditOrder (props) {
           />
         </div>
         <div className={styles.status}>
-          <InputsWithLabel
-            placeholder='Статус заказа'
-            caption='Статус заказа'
-            valueInput={status}
+          <Select
+            items={stateOfOrders}
             onChange={handleStatusChange}
+            currentValue={orderForEdit.status}
           />
         </div>
         <div className={styles.code}>

@@ -4,9 +4,10 @@ import { Input } from 'Components/Inputs/Input'
 import React, { useState } from 'react'
 import { Button } from 'Components/Buttons/Button'
 import classNames from 'classnames/bind'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { filterExtended } from 'features/data/dataSlice'
 import propTypes from 'prop-types'
+import { Select } from 'Components/Inputs/Select'
 
 export function ExtendedFilter (props) {
   const dispatch = useDispatch()
@@ -15,6 +16,13 @@ export function ExtendedFilter (props) {
   const [status, setstatus] = useState('')
   const [priceFrom, setpriceFrom] = useState('')
   const [priceTo, setpriceTo] = useState('')
+  const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
+  const inputValues = [
+    {
+      key: '0',
+      value: 'Любой'
+    }
+  ].concat(stateOfOrders)
 
   const visiblePanelStyleName = classNames({
     [styles.panel]: props.visible,
@@ -68,7 +76,8 @@ export function ExtendedFilter (props) {
           <Input type='date' placeholder='dd.mm.dddd' labeltext='по' onChange={handleChangeDateTo} />
         </div>
         <div className={styles.inputStatus}>
-          <InputsWithLabel
+          <Select
+            items={inputValues}
             placeholder='dd.mm.dddd'
             caption='Статус заказа'
             onChange={handleChangeStatus}
