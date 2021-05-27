@@ -1,7 +1,38 @@
+.lightTheme {
+  --blue-color: #459DF5;
+  --red-color: #F53152;
+  --black-color: #000;
+  --white-color: #FFF;
+  --white-blue: #EBF0F5;
+  --ligth-blue: #BAD8F5;
+  --border-table: #EBF0F5;
+  --shade-clor: rgba(0, 0, 0, 0.15);
+  --dropdown-shadow-color: #C4C4C4;
+  --dropdown-shadow-box: 0px 8px 24px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.darkTheme {
+  --blue-color: #459DF5;
+  --red-color: #F53152;
+  --black-color: #BCC4CC;
+  --white-color: #2B2D33;
+  --white-blue: #1F2629;
+  --ligth-blue: #454E52;
+  --border-table: #1F2629;
+  --shade-clor: rgba(0, 0, 0, 0.3);
+  --dropdown-shadow-color: #C4C4C4;
+  --dropdown-shadow-box: 0px 12px 24px rgba(0, 0, 0, 0.2), 0px 6px 12px rgba(0, 0, 0, 0.3), 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.bodyMain{
+  background: var(--white-color);
+}
+
 .adminPanel {
   display: flex;
   flex-direction: column;
-  margin-top: 32px;
-  margin-left: 48px;
-  margin-right: 48px;
+  margin-top: 2.5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+
 }
+

@@ -1,52 +1,51 @@
 import styles from 'Components/Inputs/Input.module.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
 
 export function Input (props) {
-  const [Value, setValue] = useState('')
-  const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
-  const [HasError, setHasError] = useState(false)
+  const { valueInput } = props
   const { labeltext } = props
   const { placeholder } = props
+  const { disabled } = props
+  // const { type } = props
+  const [Value, setValue] = useState(valueInput)
+  const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
+  const [HasError, setHasError] = useState(false)
 
   function handleReset () {
     setValue('')
     setHasError(false)
     setisCloseButtonVisisble(false)
-    if (props.onChange) {
-      props.onChange('')
-    }
+    props.onChange('')
   }
 
   function handleChange (event) {
-    if (props.type === 'date') {
-      const hasErrorValidate = !event.target.value.match(/\d{2}\.\d{2}\.\d{4}/)
-      setValue(event.target.value)
-      const hasErroDate = event.target.value ? hasErrorValidate : false
-      setHasError(hasErroDate)
-      if (props.onChange && !hasErroDate) {
-        props.onChange(event.target.value)
-      }
-    } else {
-      setValue(event.target.value)
-      setHasError(false)
-      if (props.onChange) {
-        props.onChange(event.target.value)
-      }
-    }
-    setisCloseButtonVisisble(Value !== '')
+    setValue(event.target.value)
+    setHasError(false)
+    props.onChange(event.target.value)
+    setisCloseButtonVisisble(event.target.value !== '')
   }
 
   const styleInputBorder = classNames({
     [styles.inputPanelError]: HasError,
-    [styles.inputPanel]: !HasError
+    [styles.inputPanel]: !HasError,
+    [styles.inputPanelDisabled]: disabled
   })
 
   const styleCloseButton = classNames({
     [styles.closeButton]: isCloseButtonVisisble,
     [styles.closeButtonInvisible]: !isCloseButtonVisisble
   })
+
+  const styleTypeIcon = classNames({
+    [styles.disabledIcon]: disabled,
+    [styles.disabledIconInvisible]: !disabled
+  })
+
+  useEffect(() => {
+    setValue(valueInput)
+  }, [valueInput])
 
   return (
     <div className={styleInputBorder}>
@@ -57,12 +56,15 @@ export function Input (props) {
         className={styles.inputWithIcon}
         placeholder={placeholder}
         onChange={handleChange}
+        onKeyDown={props.onKeyDown}
+        disabled={disabled}
       />
       <button
         onClick={handleReset}
         className={styleCloseButton}
         type='button'
       />
+      <i className={styleTypeIcon} />
     </div>
   )
 }
@@ -71,12 +73,18 @@ Input.propTypes = {
   labeltext: propTypes.string,
   placeholder: propTypes.string,
   onChange: propTypes.func,
-  type: propTypes.string
+  onKeyDown: propTypes.func,
+  // type: propTypes.string,
+  valueInput: propTypes.string,
+  disabled: propTypes.bool
 }
 
 Input.defaultProps = {
   labeltext: '',
   placeholder: '',
   onChange: () => {},
-  type: ''
+  onKeyDown: () => {},
+  type: '',
+  valueInput: '',
+  disabled: false
 }

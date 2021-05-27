@@ -33,7 +33,7 @@ CheckBox.propTypes = {
 
 CheckBox.defaultProps = {
   identifier: '',
-  checked: false,
+  checked: undefined,
   OnChecked: () => {},
   OnUnChecked: () => {}
 }

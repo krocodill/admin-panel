@@ -1,0 +1,40 @@
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    width: 14rem;
+    height: 10rem;
+    overflow: auto; /* Enable scroll if needed */
+    background: var(--white-color);
+    box-shadow: var(--dropdown-shadow-box);
+    border-radius: 8px;
+}
+
+.modalVisible{
+    display: block;
+}
+
+.modalInVisible{
+    display: none;
+}
+
+.content{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.caption{
+
+}
+
+.captionText{
+    height: 100%;
+}
+
+.buttonLight{
+    margin-bottom: 0.5rem;
+}
+
+.buttonDark{
+
+}

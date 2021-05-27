@@ -9,6 +9,8 @@ export function InputsWithLabel (props) {
   const { type } = props
   const { labeltext } = props
   const { onChange } = props
+  const { valueInput } = props
+  const { disabled } = props
 
   return (
     <div className={styles.container}>
@@ -18,6 +20,8 @@ export function InputsWithLabel (props) {
         placeholder={placeholder}
         labeltext={labeltext}
         onChange={onChange}
+        valueInput={valueInput}
+        disabled={disabled}
       />
     </div>
   )
@@ -28,7 +32,9 @@ InputsWithLabel.propTypes = {
   caption: propTypes.string,
   placeholder: propTypes.string,
   type: propTypes.string,
-  labeltext: propTypes.string
+  labeltext: propTypes.string,
+  valueInput: propTypes.string,
+  disabled: propTypes.bool
 }
 
 InputsWithLabel.defaultProps = {
@@ -36,5 +42,7 @@ InputsWithLabel.defaultProps = {
   caption: '',
   placeholder: '',
   type: '',
-  labeltext: ''
+  labeltext: '',
+  valueInput: '',
+  disabled: false
 }

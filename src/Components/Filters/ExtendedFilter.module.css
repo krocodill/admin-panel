@@ -1,52 +1,57 @@
 .panel {
-  display: flex;
-  height: 88px;
-  background: #ebf0f5;
-  margin-top: 12px;
+  height: 6.5rem;
+  background: var(--white-blue);
+  margin-top: 1rem;
 }
 
 .panelInVisible {
   display: none;
 }
 
+.content{
+  display: flex;
+  width: 100%;
+  margin: 1rem;
+
+}
+
 .inputDateFrom {
-  padding-top: 16px;
-  margin-left: 16px;
-  height: 100%;
-  width: 142px;
+  width: 12rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .inputDateTo {
-  padding-left: 4px;
-  padding-top: 42px;
-  height: 100%;
-  width: 142px;
+  width: 12rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .inputStatus {
-  padding-top: 16px;
-  margin-left: 16px;
-  height: 100%;
-  width: 142px;
+  width: 12rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: flex-end;
 }
 
-inputSummaFrom {
-  padding-top: 16px;
-  margin-left: 16px;
-  height: 100%;
-  width: 142px;
+.inputSummaFrom {
+  width: 12rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .inputSummaTo {
-  padding-left: 4px;
-  padding-top: 42px;
-  height: 100%;
-  width: 142px;
+  width: 12rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .buttonApplay {
-  padding-left: 32px;
-  padding-top: 42px;
-  height: 100%;
-  width: 142px;
+  width: 12rem;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: flex-end;
 }

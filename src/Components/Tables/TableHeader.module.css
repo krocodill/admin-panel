@@ -1,13 +1,13 @@
 .header {
   display: flex;
   width: 100%;
+  height: 3.5em;
 }
 
 .tableRowItemCheckBox {
   display: flex;
   width: 4em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -19,8 +19,7 @@
 .tableRowItemNumber {
   display: flex;
   width: 6.75em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -28,8 +27,7 @@
 .tableRowItemDate {
   display: flex;
   width: 11em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -37,8 +35,7 @@
 .tableRowItemPositions {
   display: flex;
   width: 6em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -46,8 +43,7 @@
 .tableRowItemSumma {
   display: flex;
   width: 8em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -55,8 +51,7 @@
 .tableRowItemFIO {
   display: flex;
   width: 100%;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -64,8 +59,7 @@
 .tableRowItemStatus {
   display: flex;
   width: 11em;
-  height: 3.5em;
-  background: #459df5;
+  background: var(--blue-color);
   align-items: center;
   justify-content: flex-start;
 }
@@ -73,5 +67,5 @@
 .text {
   display: flex;
   margin-left: 0.5em;
-  color: #fff;
+  color: var(--white-blue);
 }

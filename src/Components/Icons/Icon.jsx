@@ -6,10 +6,9 @@ import PropTypes from 'prop-types'
 export function Icon (props) {
   const { icon } = props
   const { color } = props
-  const IconName = `icon${icon}`
-  const cx = classNames.bind(styles)
+  const IconName = styles[`icon${icon}`]
 
-  const styleTypeIcon = cx({
+  const styleTypeIcon = classNames({
     [IconName]: true,
     [styles.white]: color === 'white',
     [styles.primary]: color === 'primary',

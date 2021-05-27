@@ -12,9 +12,11 @@ export function Button (props) {
   const { textColor } = props
   const isPrimaryTextCollor = textColor === 'primary'
   const { icon } = props
+  const { color } = props
+  const solidButtonName = styles['solidButton' + color]
 
   const typeButtonStyleName = classNames({
-    [styles.solidButton]: isSolid,
+    [solidButtonName]: isSolid,
     [styles.transparentButton]: !isSolid,
     [styles.sizeBig]: isBigSize,
     [styles.sizeMedium]: !isBigSize
@@ -45,7 +47,8 @@ Button.propTypes = {
   size: propTypes.string,
   textColor: propTypes.string,
   icon: propTypes.string,
-  onClick: propTypes.func
+  onClick: propTypes.func,
+  color: propTypes.string
 }
 
 Button.defaultProps = {
@@ -54,5 +57,6 @@ Button.defaultProps = {
   size: 'big',
   textColor: 'primary',
   icon: 'None',
-  onClick: () => {}
+  onClick: () => {},
+  color: ''
 }

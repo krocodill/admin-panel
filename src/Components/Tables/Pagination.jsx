@@ -1,7 +1,8 @@
 import styles from 'Components/Tables/Pagination.module.css'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button } from 'Components/Buttons/Button'
+import { ChangePage } from 'Components/window/ChangePage'
 import { setCurrentPage } from 'features/data/dataSlice'
 import PropTypes from 'prop-types'
 import { nanoid } from 'nanoid'
@@ -14,6 +15,10 @@ export function Pagination (props) {
 
   const LEFT_PAGE = 'LEFT'
   const RIGHT_PAGE = 'RIGHT'
+  const BUTTON_CHANGE = '#'
+  const [positionX, setpositionX] = useState(0)
+  const [positionY, setpositionY] = useState(0)
+  const [showChangePage, setshowChangePage] = useState(false)
 
   const range = (from, to, step = 1) => {
     let i = from
@@ -25,6 +30,14 @@ export function Pagination (props) {
     }
 
     return result
+  }
+
+  function handleClick () {
+    setshowChangePage(true)
+  }
+
+  function handleClose () {
+    setshowChangePage(false)
   }
 
   const fetchPageNumbers = () => {
@@ -67,7 +80,7 @@ export function Pagination (props) {
         }
       }
 
-      return [1, ...pages, totalPages]
+      return [1, ...pages, totalPages, BUTTON_CHANGE]
     }
 
     return range(1, totalPages)
@@ -76,6 +89,13 @@ export function Pagination (props) {
   if (allPages === 1) return null
 
   const pages = fetchPageNumbers()
+
+  function callbackref (input) {
+    if (input) {
+      setpositionX(input.offsetLeft)
+      setpositionY(input.offsetTop)
+    }
+  }
 
   const PaginationButton = pages.map((page) => {
     if (page === LEFT_PAGE) {
@@ -90,6 +110,23 @@ export function Pagination (props) {
       return (
         <div key={nanoid()} className={styles.divPages}>
           ...
+        </div>
+      )
+    }
+
+    if (page === BUTTON_CHANGE) {
+      return (
+        <div ref={callbackref} key={nanoid()} className={styles.divPages}>
+          <div className={styles.changePage}>
+            <ChangePage show={showChangePage} onClose={handleClose} positionX={positionX} positionY={positionY} />
+          </div>
+          <Button
+            type={page === currPage ? 'solid' : 'transparent'}
+            size='medium'
+            onClick={handleClick}
+          >
+            {page.toString()}
+          </Button>
         </div>
       )
     }

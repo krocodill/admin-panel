@@ -1,4 +1,6 @@
-import { Server, Model, Factory, RestSerializer } from 'miragejs'
+import { Server, Model, Factory, RestSerializer, belongsTo, Serializer, JSONAPISerializer,
+  hasMany,
+  association } from 'miragejs'
 
 import { nanoid } from '@reduxjs/toolkit'
 
@@ -6,9 +8,12 @@ import faker from 'faker'
 import { setRandom } from 'txtgen'
 import seedrandom from 'seedrandom'
 
-const IdSerializer = RestSerializer.extend({
-  serializeIds: 'always',
-})
+const IdSerializer = Serializer.extend({
+  // will always serialize the ids of all relationships for the model or collection in the response
+  serializeIds: "always",
+
+
+});
 
 faker.locale = 'ru'
 
@@ -53,9 +58,28 @@ new Server({
 
       return null
     })
+
+    this.post("/order", function (schema, request) {
+      const attrs = JSON.parse(request.requestBody)
+      return schema.orders.find(attrs.id).update( {
+        fio: attrs.fio,
+        status: attrs.status
+      } )
+    })
+
+    this.get('/order/:id', (schema, req) => {
+      const order = schema.orders.find(req.params.id)
+      console.log(order.orderItems)
+      return order
+    })
   },
   models: {
-    order: Model,
+    order: Model.extend({
+      orderItems: hasMany(),
+    }),
+    orderItem: Model.extend({
+      order: belongsTo(),
+    }),
   },
   factories: {
     order: Factory.extend({
@@ -86,10 +110,40 @@ new Server({
       fio() {
         return `${faker.name.lastName()} ${faker.name.firstName()} ${faker.name.middleName()}`
       },
+      privilage() {
+        return faker.random.arrayElement([
+          'Новый',
+          'Сильвер',
+          'Голд'
+        ])
+      },
+      afterCreate(order, server) {
+        server.createList('orderItem', order.positions , { order })
+      },
+    }),
+    orderItem: Factory.extend({
+      id() {
+        return nanoid()
+      },
+      article() {
+        return faker.datatype.string(2) + '.' + faker.datatype.number()
+      },
+      name() {
+        return faker.commerce.productName()
+      },
+      price() {
+        return faker.commerce.price()
+      },
+      order: association(),
     }),
   },
   serializers: {
-    orders: IdSerializer,
+    order: RestSerializer.extend({
+      include: ['orderItems'],
+      embed: true,
+      serializeIds: "always",
+    }),
+    orderItem: IdSerializer,
   },
   seeds(server) {
     server.createList('order', 200)

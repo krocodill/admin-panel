@@ -7,6 +7,15 @@
   align-items: stretch;
 }
 
+.solidButtonRed {
+  border: none;
+  display: flex;
+  border-radius: 4px;
+  background: var(--red-color);
+  align-content: center;
+  align-items: stretch;
+}
+
 .transparentButton {
   border: none;
   display: flex;
@@ -19,7 +28,7 @@
   display: flex;
   background: transparent;
   border: none;
-  color: #ffffff;
+  color: var(--white-color);
   text-align: center;
   margin: auto;
 }
@@ -37,17 +46,17 @@
   display: flex;
   background: transparent;
   border: none;
-  color: #000000;
+  color: var(--red-color);
   text-align: center;
   margin: auto;
 }
 
 .sizeMedium {
   display: flex;
-  height: 24px;
+  height: 2rem;
 }
 
 .sizeBig {
   display: flex;
-  height: 32px;
+  height: 2.5rem;
 }

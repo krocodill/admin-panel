@@ -19,7 +19,7 @@
 .rowItem {
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #ebf0f5;
+  border-bottom: 1px solid var(--border-table);
 }
 
 .checkBox {
@@ -85,4 +85,5 @@
 .text {
   display: flex;
   margin-left: 0.5em;
+  color: var(--black-color);
 }

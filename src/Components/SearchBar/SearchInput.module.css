@@ -3,20 +3,21 @@
 .searchBar {
   border: 1px solid #459df5;
   display: flex;
-  height: 32px;
-  border-radius: 4px;
-  width: 320px;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  width: 26rem;
 }
 
 .inputWithIcon {
   border: none;
   flex: 1;
   outline: none;
-  color: var(--color-black);
+  color: var(--black-color);
+  background: var(--white-color);
 }
 
 .inputWithIcon::placeholder {
-  color: var(--color-blue);
+  color: var(--ligth-blue);
 }
 
 .searchIcon {

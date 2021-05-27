@@ -6,6 +6,11 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   return response.orders
 })
 
+export const updateOrder = createAsyncThunk('order/Order', async (order) => {
+  const response = await client.post('/fakeApi/order/', JSON.stringify(order))
+  return response.order
+})
+
 export const filterOrders = (params) => {
   let result = params.orders
   if (params.filterFIOorNumber) {
@@ -30,6 +35,25 @@ export const filterOrders = (params) => {
     })
   }
 
+  if (params.statusFilter) {
+    result = result.filter((order) => {
+      return parseInt(order.status) === parseInt(params.statusFilter)
+    })
+  }
+
+  if (params.priceFrom) {
+    result = result.filter((order) => {
+      console.log(parseFloat(parseFloat(order.summa), params.priceFrom))
+      return parseFloat(order.summa) >= parseFloat(params.priceFrom)
+    })
+  }
+
+  if (params.priceTo) {
+    result = result.filter((order) => {
+      return parseFloat(order.summa) <= parseFloat(params.priceTo)
+    })
+  }
+
   return result
 }
 
@@ -40,6 +64,10 @@ export const dataSlice = createSlice({
     isLoading: false,
     isSuccess: false,
     isError: false,
+    isIdleUpdate: true,
+    isLoadingUpdate: false,
+    isSuccessUpdate: false,
+    isErrorUpdate: false,
     errorMessage: '',
     selectedOrdersCount: 0,
     orders: [],
@@ -49,7 +77,10 @@ export const dataSlice = createSlice({
     allPages: 1,
     filterFIOorNumber: null,
     dateOrderFrom: null,
-    dateOrderTo: null
+    dateOrderTo: null,
+    statusFilter: null,
+    priceFrom: null,
+    priceTo: null
   },
   reducers: {
     filterFioOrNumber: (state, action) => {
@@ -57,8 +88,12 @@ export const dataSlice = createSlice({
       state.filtredOrders = filterOrders(state)
       state.currentPage = 1
     },
-    filterDateFrom: (state, action) => {
-      state.dateOrderFrom = action.payload
+    filterExtended: (state, action) => {
+      state.dateOrderFrom = action.payload.dateOrderFrom
+      state.dateOrderto = action.payload.dateOrderto
+      state.statusFilter = action.payload.statusFilter
+      state.priceFrom = action.payload.priceFrom
+      state.priceTo = action.payload.priceTo
       state.filtredOrders = filterOrders(state)
       state.currentPage = 1
     },
@@ -107,9 +142,9 @@ export const dataSlice = createSlice({
       state.isIdle = false
       state.isSuccess = true
       state.isError = false
-      // Add any fetched posts to the array
       state.orders = action.payload
       state.filtredOrders = filterOrders(state)
+      state.currentPage = 1
     },
     [fetchOrders.rejected]: (state, action) => {
       state.isLoading = false
@@ -117,6 +152,27 @@ export const dataSlice = createSlice({
       state.isSuccess = false
       state.isError = true
       state.errorMessage = action.error.message
+    },
+    [updateOrder.pending]: (state) => {
+      state.isIdleUpdate = false
+      state.isLoadingUpdate = true
+      state.isSuccessUpdate = false
+      state.isErrorUpdate = false
+    },
+    [updateOrder.fulfilled]: (state, action) => {
+      state.isIdleUpdate = false
+      state.isLoadingUpdate = false
+      state.isSuccessUpdate = true
+      state.isErrorUpdate = false
+      const index = state.orders.findIndex((e) => e.id === action.id)
+      state.orders[index] = action
+      state.filtredOrders = filterOrders(state)
+    },
+    [updateOrder.rejected]: (state, action) => {
+      state.isIdleUpdate = false
+      state.isLoadingUpdate = false
+      state.isSuccessUpdate = false
+      state.isErrorUpdate = true
     }
   }
 })
@@ -124,7 +180,7 @@ export const dataSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   filterFioOrNumber,
-  filterDateFrom,
+  filterExtended,
   setCountPage,
   orderDelete,
   orderCheckBoxChecked,
