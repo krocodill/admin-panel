@@ -2,9 +2,7 @@ import styles from 'Components/window/EditOrderTableGrid.module.css'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export function EditOrderTableGrid (props) {
-  const { items } = props
-
+export function EditOrderTableGrid ({ items }) {
   const Items = items.map((item) => (
     <div className={styles.rowItem} key={item.id}>
       <div className={styles.tableRowItemArticle}>

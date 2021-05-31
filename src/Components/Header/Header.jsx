@@ -23,7 +23,7 @@ export function Header () {
     <div className={styles.header}>
       <Heading />
       <div className={styles.popup}>
-        <Button type='transparent' icon={iconName} onClick={handleClick}>
+        <Button size='Big' icon={iconName} onClick={handleClick} textColor='Primary'>
           {themeName}
         </Button>
         <ChangeTheme show={showChangeTheme} onClose={handleClose} />

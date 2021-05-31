@@ -11,12 +11,8 @@ import { updateOrder } from 'features/data/dataSlice'
 import { Select } from 'Components/Inputs/Select'
 import { EditOrderTableGrid } from 'Components/window/EditOrderTableGrid'
 
-export function EditOrder (props) {
+export function EditOrder ({ show, onClose, orderForEdit }) {
   const dispatch = useDispatch()
-
-  const { show } = props
-  const { onClose } = props
-  const { orderForEdit } = props
   const [fio, setfio] = useState('')
   const [status, setstatus] = useState('')
   const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
@@ -132,7 +128,7 @@ export function EditOrder (props) {
           <IconRotate />
         </div>
         <div className={styles.buttonUpdate}>
-          <Button icon='Checkmark' type='solid' size='medium' onClick={handleClickEditOrder}>
+          <Button icon='Checkmark' color='Blue' textColor='White' size='medium' onClick={handleClickEditOrder}>
             Сохранить
           </Button>
         </div>

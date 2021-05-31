@@ -3,15 +3,7 @@ import { Input } from 'Components/Inputs/Input'
 import React from 'react'
 import propTypes from 'prop-types'
 
-export function InputsWithLabel (props) {
-  const { caption } = props
-  const { placeholder } = props
-  const { type } = props
-  const { labeltext } = props
-  const { onChange } = props
-  const { valueInput } = props
-  const { disabled } = props
-
+export function InputsWithLabel ({ caption, placeholder, type, labeltext, onChange, valueInput, disabled }) {
   return (
     <div className={styles.container}>
       <label className={styles.caption}>{caption}</label>

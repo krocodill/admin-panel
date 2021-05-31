@@ -1,36 +1,19 @@
-import styles from 'Components/Tables/Pagination.module.css'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
+import { nanoid } from 'nanoid'
 import { Button } from 'Components/Buttons/Button'
 import { ChangePage } from 'Components/window/ChangePage'
 import { setCurrentPage } from 'features/data/dataSlice'
-import PropTypes from 'prop-types'
-import { nanoid } from 'nanoid'
+import { LEFT_PAGE, RIGHT_PAGE, BUTTON_CHANGE, range } from 'Components/Tables/PaginationConst'
+import styles from 'Components/Tables/Pagination.module.css'
 
-export function Pagination (props) {
+export function Pagination ({ currentPage: currPage, allPages }) {
   const dispatch = useDispatch()
-  const { currentPage: currPage } = props
-  const { allPages } = props
   const pagesNeighbours = 1
-
-  const LEFT_PAGE = 'LEFT'
-  const RIGHT_PAGE = 'RIGHT'
-  const BUTTON_CHANGE = '#'
   const [positionX, setpositionX] = useState(0)
   const [positionY, setpositionY] = useState(0)
   const [showChangePage, setshowChangePage] = useState(false)
-
-  const range = (from, to, step = 1) => {
-    let i = from
-    const result = []
-
-    while (i <= to) {
-      result.push(i)
-      i += step
-    }
-
-    return result
-  }
 
   function handleClick () {
     setshowChangePage(true)
@@ -121,7 +104,8 @@ export function Pagination (props) {
             <ChangePage show={showChangePage} onClose={handleClose} positionX={positionX} positionY={positionY} />
           </div>
           <Button
-            type={page === currPage ? 'solid' : 'transparent'}
+            color={page === currPage ? 'Blue' : 'transparent'}
+            textColor={page === currPage ? 'White' : 'Primary'}
             size='medium'
             onClick={handleClick}
           >
@@ -134,7 +118,8 @@ export function Pagination (props) {
     return (
       <div key={nanoid()} className={styles.divPages}>
         <Button
-          type={page === currPage ? 'solid' : 'transparent'}
+          color={page === currPage ? 'Blue' : 'transparent'}
+          textColor={page === currPage ? 'White' : 'Primary'}
           size='medium'
           onClick={() => dispatch(setCurrentPage(page))}
         >

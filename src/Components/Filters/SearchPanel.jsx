@@ -17,7 +17,8 @@ export function SearchPanel () {
       <div className={styles.buttonFilter}>
         <Button
           icon='Filter'
-          type='solid'
+          color='Blue'
+          textColor='White'
           onClick={() => dispatch(changeVisibleFilter())}
         >
           Фильтры

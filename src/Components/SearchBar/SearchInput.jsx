@@ -3,25 +3,21 @@ import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 
-export function SearchInput (props) {
-  const [Value, setValue] = useState('')
+export function SearchInput ({ placeholder, onChange, onReset }) {
+  const [value, setvalue] = useState('')
   const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
-  const { placeholder } = props
 
   function handleReset () {
-    setValue('')
+    setvalue('')
     setisCloseButtonVisisble(false)
-    if (props.onChange) {
-      props.onChange('')
-    }
+    onReset()
   }
 
   function handleChange (event) {
-    setValue(event.target.value)
-    setisCloseButtonVisisble(Value !== '')
-    if (props.onChange) {
-      props.onChange(event.target.value)
-    }
+    const { target: { value: currentValue } } = event
+    setvalue(currentValue)
+    setisCloseButtonVisisble(value !== '')
+    onChange(event)
   }
 
   const styleCloseButton = classNames({
@@ -34,7 +30,7 @@ export function SearchInput (props) {
       <span className={styles.searchIcon} />
       <input
         type='text'
-        value={Value}
+        value={value}
         className={styles.inputWithIcon}
         placeholder={placeholder}
         onChange={handleChange}
@@ -50,10 +46,12 @@ export function SearchInput (props) {
 
 SearchInput.propTypes = {
   placeholder: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onReset: PropTypes.func
 }
 
 SearchInput.defaultProps = {
   placeholder: '',
-  onChange: () => {}
+  onChange: () => {},
+  onReset: () => {}
 }

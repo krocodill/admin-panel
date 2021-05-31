@@ -3,16 +3,14 @@ import React from 'react'
 import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 
-export function Icon (props) {
-  const { icon } = props
-  const { color } = props
+export function Icon ({ icon, color }) {
   const IconName = styles[`icon${icon}`]
 
   const styleTypeIcon = classNames({
     [IconName]: true,
-    [styles.white]: color === 'white',
-    [styles.primary]: color === 'primary',
-    [styles.secondary]: color === 'secondary'
+    [styles.white]: color === 'White',
+    [styles.primary]: color === 'Primary',
+    [styles.secondary]: color === 'Secondary'
   })
   return <i className={styleTypeIcon} />
 }

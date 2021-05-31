@@ -3,12 +3,7 @@ import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
 
-export function Input (props) {
-  const { valueInput } = props
-  const { labeltext } = props
-  const { placeholder } = props
-  const { disabled } = props
-  // const { type } = props
+export function Input ({ valueInput, labeltext, placeholder, disabled, onChange, onReset, onKeyDown }) {
   const [Value, setValue] = useState(valueInput)
   const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
   const [HasError, setHasError] = useState(false)
@@ -17,14 +12,15 @@ export function Input (props) {
     setValue('')
     setHasError(false)
     setisCloseButtonVisisble(false)
-    props.onChange('')
+    onReset()
   }
 
   function handleChange (event) {
-    setValue(event.target.value)
+    const { target: { value: currentValue } } = event
+    setValue(currentValue)
     setHasError(false)
-    props.onChange(event.target.value)
-    setisCloseButtonVisisble(event.target.value !== '')
+    onChange(event)
+    setisCloseButtonVisisble(currentValue !== '')
   }
 
   const styleInputBorder = classNames({
@@ -56,7 +52,7 @@ export function Input (props) {
         className={styles.inputWithIcon}
         placeholder={placeholder}
         onChange={handleChange}
-        onKeyDown={props.onKeyDown}
+        onKeyDown={onKeyDown}
         disabled={disabled}
       />
       <button
@@ -74,7 +70,7 @@ Input.propTypes = {
   placeholder: propTypes.string,
   onChange: propTypes.func,
   onKeyDown: propTypes.func,
-  // type: propTypes.string,
+  onReset: propTypes.func,
   valueInput: propTypes.string,
   disabled: propTypes.bool
 }
@@ -84,6 +80,7 @@ Input.defaultProps = {
   placeholder: '',
   onChange: () => {},
   onKeyDown: () => {},
+  onReset: () => {},
   type: '',
   valueInput: '',
   disabled: false

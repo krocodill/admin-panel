@@ -6,12 +6,8 @@ import { Button } from 'Components/Buttons/Button'
 import { orderDelete, fetchOrders } from 'features/data/dataSlice'
 import { useDispatch } from 'react-redux'
 
-export function AcceptDelete (props) {
+export function AcceptDelete ({ show, onClose, countToDelete }) {
   const dispatch = useDispatch()
-
-  const { show } = props
-  const { onClose } = props
-  const { countToDelete } = props
 
   const showChangeTheme = classNames({
     [styles.modal]: true,
@@ -36,10 +32,10 @@ export function AcceptDelete (props) {
           <p className={styles.captionText}>{`Удалить ${countToDelete} записей?`}</p>
         </div>
         <div className={styles.buttonLight}>
-          <Button type='transporent' size='medium' onClick={handleDelete}>Удалить</Button>
+          <Button textColor='Primary' size='medium' onClick={handleDelete}>Удалить</Button>
         </div>
         <div className={styles.buttonDark}>
-          <Button size='medium' onClick={handleCancel}>Отмена</Button>
+          <Button color='Blue' textColor='White' size='medium' onClick={handleCancel}>Отмена</Button>
         </div>
       </div>
     </div>

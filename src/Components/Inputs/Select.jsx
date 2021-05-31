@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react'
 import propTypes from 'prop-types'
 import { nanoid } from 'nanoid'
 
-export function Select (props) {
-  const { items } = props
-  const [Value, setValue] = useState('')
-  const { currentValue } = props
+export function Select ({ items, currentValue, onChange }) {
+  const [value, setvalue] = useState('')
 
   const options = items.map((item) => {
-    if (Value.toString() === item.key) {
+    if (value.toString() === item.key) {
       return (
         <option key={nanoid()} selected value={item.key}>{item.value}</option>
       )
@@ -21,12 +19,13 @@ export function Select (props) {
   })
 
   useEffect(() => {
-    setValue(currentValue)
+    setvalue(currentValue)
   }, [currentValue])
 
   function handleChange (event) {
-    setValue(event.target.value)
-    props.onChange(event.target.value)
+    const { target: { value: currentValue } } = event
+    setvalue(currentValue)
+    onChange(event)
   }
 
   return (

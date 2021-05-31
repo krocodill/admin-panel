@@ -6,13 +6,8 @@ import { Input } from 'Components/Inputs/Input'
 import { setCurrentPage } from 'features/data/dataSlice'
 import { useDispatch } from 'react-redux'
 
-export function ChangePage (props) {
+export function ChangePage ({ show, onClose, positionX, positionY }) {
   const dispatch = useDispatch()
-
-  const { show } = props
-  const { onClose } = props
-  const { positionX } = props
-  const { positionY } = props
 
   const [Value, setValue] = useState(1)
   const [currentDiv, setcurrentDiv] = useState(null)

@@ -4,45 +4,32 @@ import { Icon } from 'Components/Icons/Icon'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
 
-export function Button (props) {
-  const { type } = props
-  const isSolid = type === 'solid'
-  const { size } = props
-  const isBigSize = size === 'big'
-  const { textColor } = props
-  const isPrimaryTextCollor = textColor === 'primary'
-  const { icon } = props
-  const { color } = props
-  const solidButtonName = styles['solidButton' + color]
+export function Button ({ size, textColor, icon, color, onClick, children }) {
+  const ButtonName = styles[color + 'Button']
+  const buttonSizeName = styles[size + 'Size']
+  const buttonTextColorName = styles['textButton' + textColor]
 
   const typeButtonStyleName = classNames({
-    [solidButtonName]: isSolid,
-    [styles.transparentButton]: !isSolid,
-    [styles.sizeBig]: isBigSize,
-    [styles.sizeMedium]: !isBigSize
+    [styles.Button]: true,
+    [ButtonName]: true,
+    [buttonSizeName]: true
   })
-  const textButtonStyleNmae = classNames({
-    [styles.buttonWhite]: isSolid,
-    [styles.buttonPrimary]: !isSolid && isPrimaryTextCollor,
-    [styles.buttonSecondary]: !isSolid && !isPrimaryTextCollor
+
+  const textButtonStyleName = classNames({
+    [buttonTextColorName]: true
   })
-  const colorButtonIfNotSolid = isPrimaryTextCollor
-    ? props.textColor
-    : 'secondary'
-  const textButtonIconColor = isSolid ? 'white' : colorButtonIfNotSolid
 
   return (
     <div className={typeButtonStyleName}>
-      <button className={textButtonStyleNmae} onClick={props.onClick}>
-        <Icon icon={icon} color={textButtonIconColor} />
-        {props.children}
+      <button className={textButtonStyleName} onClick={onClick}>
+        <Icon icon={icon} color={textColor} />
+        {children}
       </button>
     </div>
   )
 }
 
 Button.propTypes = {
-  type: propTypes.string,
   children: propTypes.string,
   size: propTypes.string,
   textColor: propTypes.string,
@@ -52,11 +39,10 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
-  type: 'solid',
   children: '',
   size: 'big',
-  textColor: 'primary',
+  textColor: 'White',
   icon: 'None',
   onClick: () => {},
-  color: ''
+  color: 'transporent'
 }

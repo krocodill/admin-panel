@@ -10,15 +10,13 @@ import {
 import { CheckBox } from 'Components/CheckBox/CheckBox'
 import PropTypes from 'prop-types'
 
-export function TableGrid (props) {
+export function TableGrid ({ orders }) {
   const dispatch = useDispatch()
   const SelectedOrders = useSelector((state) => state.data.selectedOrders)
   const [clientHeight, setclientHeight] = useState(0)
   const [scrollableGrid, setscrollableGrid] = useState(null)
   const currentPage = useSelector((state) => state.data.currentPage)
   const [pageNumber, setpageNumber] = useState(1)
-  const { isLoading } = props
-  const { orders } = props
 
   const Orders = orders.map((order) => (
     <div className={styles.rowItem} key={order.id}>
@@ -81,9 +79,6 @@ export function TableGrid (props) {
     }
   }
 
-  if (isLoading) {
-    return <div className={styles.tableGrid}>Загрузка</div>
-  }
   return (
     <div ref={callbackRef} className={styles.tableGrid} onScroll={handleScroll}>
       {Orders}
@@ -92,7 +87,6 @@ export function TableGrid (props) {
 }
 
 TableGrid.propTypes = {
-  isLoading: PropTypes.bool,
   orders: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string
@@ -101,6 +95,5 @@ TableGrid.propTypes = {
 }
 
 TableGrid.defaultProps = {
-  isLoading: false,
   orders: []
 }

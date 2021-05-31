@@ -6,11 +6,8 @@ import { Button } from 'Components/Buttons/Button'
 import { useDispatch } from 'react-redux'
 import { changeToLigth, changeToDark } from 'features/ui/uiSlice'
 
-export function ChangeTheme (props) {
+export function ChangeTheme ({ show, onClose }) {
   const dispatch = useDispatch()
-
-  const { show } = props
-  const { onClose } = props
 
   const showChangeTheme = classNames({
     [styles.modal]: true,
@@ -34,10 +31,10 @@ export function ChangeTheme (props) {
           <p className={styles.captionText}>Выберите тему</p>
         </div>
         <div className={styles.buttonLight}>
-          <Button icon='Sun' type='transporent' size='medium' onClick={handleChangeToLight}>Светлая тема</Button>
+          <Button icon='Sun' textColor='Primary' size='medium' onClick={handleChangeToLight}>Светлая тема</Button>
         </div>
         <div className={styles.buttonDark}>
-          <Button icon='Moon' size='medium' onClick={handleChangeToDark}>Темная тема</Button>
+          <Button icon='Moon' size='medium' textColor='White' color='Blue' onClick={handleChangeToDark}>Темная тема</Button>
         </div>
       </div>
     </div>

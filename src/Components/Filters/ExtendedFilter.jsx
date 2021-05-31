@@ -9,7 +9,7 @@ import { filterExtended } from 'features/data/dataSlice'
 import propTypes from 'prop-types'
 import { Select } from 'Components/Inputs/Select'
 
-export function ExtendedFilter (props) {
+export function ExtendedFilter ({ visible }) {
   const dispatch = useDispatch()
   const [dateFrom, setdateFrom] = useState('')
   const [dateTo, setdateTo] = useState('')
@@ -25,8 +25,8 @@ export function ExtendedFilter (props) {
   ].concat(stateOfOrders)
 
   const visiblePanelStyleName = classNames({
-    [styles.panel]: props.visible,
-    [styles.panelInVisible]: !props.visible
+    [styles.panel]: visible,
+    [styles.panelInVisible]: !visible
   })
 
   function handleClickApplyFilter () {
@@ -97,7 +97,7 @@ export function ExtendedFilter (props) {
           <Input type='decimal' placeholder='Р' labeltext='до' onChange={handleChangePriceTo} />
         </div>
         <div className={styles.buttonApplay}>
-          <Button type='transporent' onClick={handleClickApplyFilter}>
+          <Button textColor='Primary' onClick={handleClickApplyFilter}>
             Применить
           </Button>
         </div>

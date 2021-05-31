@@ -11,7 +11,8 @@ export function MainFilters () {
     <div className={styles.mainFilters}>
       <SearchPanel />
       <Button
-        type='transporent'
+        color='transporent'
+        textColor='Primary'
         icon='Refresh'
         onClick={() => dispatch(fetchOrders())}
       >

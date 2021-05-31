@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { Header } from 'Components/Header/Header'
-import styles from 'Components/AdminPanel/AdminPanel.module.css'
-import { Filters } from 'Components/Filters/Filters'
-import { Tables } from 'Components/Tables/Tables'
 import classNames from 'classnames/bind'
 import { useSelector } from 'react-redux'
+import { Header } from 'Components/Header/Header'
+import { Filters } from 'Components/Filters/Filters'
+import { Tables } from 'Components/Tables/Tables'
+import styles from 'Components/AdminPanel/AdminPanel.module.css'
 
 export function AdminPanel () {
   const theme = useSelector((state) => state.ui.theme)

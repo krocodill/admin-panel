@@ -42,7 +42,7 @@ export function TableFooter () {
         <p className={styles.textSelect}>{`Выбрано записей: ${selectedRow}`}</p>
         <div className={styles.buttonUpdate}>
           <EditOrder show={showEditOrder} onClose={handleCloseEditOrder} orderForEdit={orderForEdit} />
-          <Button icon='Pencil' type='solid' size='medium' onClick={handleClickEditOrder}>
+          <Button icon='Pencil' color='Blue' size='medium' onClick={handleClickEditOrder}>
             Изменить статус
           </Button>
         </div>
