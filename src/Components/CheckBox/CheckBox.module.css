@@ -1,2 +1,59 @@
-.checkBox {
+/* Customize the label (the container) */
+.container {
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    display: none;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: var(--white-color);
+    border: 1px solid #BAD8F5;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin-right: 0.75rem;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: var(--blue-color);
+    border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: flex;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    height: 1.1rem;
+    width: 1.1rem;
+    border-radius: 2px;
+    mask: url("../../icons/checkmark.svg");
+    background: #ffffff;
 }

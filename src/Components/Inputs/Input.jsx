@@ -3,29 +3,28 @@ import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
 
-export function Input ({ valueInput, labeltext, placeholder, disabled, onChange, onReset, onKeyDown }) {
-  const [Value, setValue] = useState(valueInput)
-  const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
-  const [HasError, setHasError] = useState(false)
+export function Input ({ valueInput, labeltext, placeholder, disabled, onChange, onReset, onKeyDown, isError, type }) {
+  const [value, setValue] = useState(valueInput)
+  const [isCloseButtonVisisble, setIsCloseButtonVisisble] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
   function handleReset () {
     setValue('')
     setHasError(false)
-    setisCloseButtonVisisble(false)
+    setIsCloseButtonVisisble(false)
     onReset()
   }
 
-  function handleChange (event) {
-    const { target: { value: currentValue } } = event
+  function handleChange ({ target: { value: currentValue } }) {
     setValue(currentValue)
     setHasError(false)
     onChange(event)
-    setisCloseButtonVisisble(currentValue !== '')
+    setIsCloseButtonVisisble(currentValue !== '')
   }
 
   const styleInputBorder = classNames({
-    [styles.inputPanelError]: HasError,
-    [styles.inputPanel]: !HasError,
+    [styles.inputPanelError]: hasError,
+    [styles.inputPanel]: !hasError,
     [styles.inputPanelDisabled]: disabled
   })
 
@@ -43,17 +42,22 @@ export function Input ({ valueInput, labeltext, placeholder, disabled, onChange,
     setValue(valueInput)
   }, [valueInput])
 
+  useEffect(() => {
+    setHasError(isError)
+  }, [isError])
+
   return (
     <div className={styleInputBorder}>
       <label className={styles.innerLabel}>{labeltext}</label>
       <input
-        type='text'
-        value={Value}
+        type={type}
+        value={value}
         className={styles.inputWithIcon}
         placeholder={placeholder}
         onChange={handleChange}
         onKeyDown={onKeyDown}
         disabled={disabled}
+        min='0'
       />
       <button
         onClick={handleReset}
@@ -66,13 +70,15 @@ export function Input ({ valueInput, labeltext, placeholder, disabled, onChange,
 }
 
 Input.propTypes = {
+  type: propTypes.string,
   labeltext: propTypes.string,
   placeholder: propTypes.string,
   onChange: propTypes.func,
   onKeyDown: propTypes.func,
   onReset: propTypes.func,
   valueInput: propTypes.string,
-  disabled: propTypes.bool
+  disabled: propTypes.bool,
+  isError: propTypes.bool
 }
 
 Input.defaultProps = {
@@ -81,7 +87,8 @@ Input.defaultProps = {
   onChange: () => {},
   onKeyDown: () => {},
   onReset: () => {},
-  type: '',
+  type: 'text',
   valueInput: '',
-  disabled: false
+  disabled: false,
+  isError: false
 }

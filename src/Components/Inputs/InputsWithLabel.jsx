@@ -3,7 +3,7 @@ import { Input } from 'Components/Inputs/Input'
 import React from 'react'
 import propTypes from 'prop-types'
 
-export function InputsWithLabel ({ caption, placeholder, type, labeltext, onChange, valueInput, disabled }) {
+export function InputsWithLabel ({ caption, placeholder, type, labeltext, onReset, onChange, valueInput, disabled, isError }) {
   return (
     <div className={styles.container}>
       <label className={styles.caption}>{caption}</label>
@@ -14,6 +14,8 @@ export function InputsWithLabel ({ caption, placeholder, type, labeltext, onChan
         onChange={onChange}
         valueInput={valueInput}
         disabled={disabled}
+        isError={isError}
+        onReset={onReset}
       />
     </div>
   )
@@ -21,20 +23,24 @@ export function InputsWithLabel ({ caption, placeholder, type, labeltext, onChan
 
 InputsWithLabel.propTypes = {
   onChange: propTypes.func,
+  onReset: propTypes.func,
   caption: propTypes.string,
   placeholder: propTypes.string,
   type: propTypes.string,
   labeltext: propTypes.string,
   valueInput: propTypes.string,
-  disabled: propTypes.bool
+  disabled: propTypes.bool,
+  isError: propTypes.bool
 }
 
 InputsWithLabel.defaultProps = {
   onChange: () => {},
+  onReset: () => {},
   caption: '',
   placeholder: '',
   type: '',
   labeltext: '',
   valueInput: '',
-  disabled: false
+  disabled: false,
+  isError: false
 }

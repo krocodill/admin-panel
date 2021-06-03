@@ -1,25 +1,30 @@
 import styles from 'Components/window/EditOrderTableGrid.module.css'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { TableGridRowItem } from 'Components/Tables/TableGridRowItem'
+import { TableGridColumn } from 'Components/Tables/TableGridColumn'
+import { TableGridRowText } from 'Components/Tables/TableGridRowText'
+import { TableGridRowCurrency } from 'Components/Tables/TableGridRowCurrency'
 
 export function EditOrderTableGrid ({ items }) {
-  const Items = items.map((item) => (
-    <div className={styles.rowItem} key={item.id}>
-      <div className={styles.tableRowItemArticle}>
-        <p className={styles.text}>{item.article}</p>
-      </div>
-      <div className={styles.tableRowItemName}>
-        <p className={styles.text}>{item.name}</p>
-      </div>
-      <div className={styles.tableRowItemPrice}>
-        <p className={styles.text}>{item.price}</p>
-      </div>
-    </div>
-  ))
-
   return (
     <div className={styles.tableGrid}>
-      {Items}
+      {
+        items.map((item) => (
+          <TableGridRowItem key={item.id} size='small'>
+            <TableGridColumn size='medium'>
+              <TableGridRowText>{item.article}</TableGridRowText>
+            </TableGridColumn>
+            <TableGridColumn size='xl'>
+              <TableGridRowText>{item.name}</TableGridRowText>
+            </TableGridColumn>
+            <TableGridColumn size='auto'>
+              <TableGridRowCurrency>{item.price}</TableGridRowCurrency>
+            </TableGridColumn>
+          </TableGridRowItem>
+        ))
+
+      }
     </div>
   )
 }

@@ -1,44 +1,36 @@
-import styles from 'Components/Tables/TableHeader.module.css'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   orderCheckBoxCheckedAll,
-  orderCheckBoxUnCheckedAll
+  orderCheckBoxUnCheckedAll,
+  sortChange
 } from 'features/data/dataSlice'
-import { CheckBox } from 'Components/CheckBox/CheckBox'
+import { TableHeaderRow } from 'Components/Tables/TableHeaderRow'
+import { TableHeaderColumn } from 'Components/Tables/TableHeaderColumn'
+import { TableHeaderColumnWithCheckBox } from 'Components/Tables/TableHeaderColumnWithCheckBox'
 
 export function TableHeader () {
   const dispatch = useDispatch()
+  const headerGridSort = useSelector((state) => state.data.headerGridSort)
+
+  function handleCheckBoxChange (event) {
+    console.log(event.target.checked)
+    if (event.target.checked) {
+      dispatch(orderCheckBoxCheckedAll())
+    } else {
+      dispatch(orderCheckBoxUnCheckedAll())
+    }
+  }
 
   return (
-    <div className={styles.header}>
-      <div className={styles.tableRowItemCheckBox}>
-        <div className={styles.checkBox}>
-          <CheckBox
-            OnChecked={() => dispatch(orderCheckBoxCheckedAll())}
-            OnUnChecked={() => dispatch(orderCheckBoxUnCheckedAll())}
-          />
-        </div>
-      </div>
-
-      <div className={styles.tableRowItemNumber}>
-        <p className={styles.text}>#</p>
-      </div>
-      <div className={styles.tableRowItemDate}>
-        <p className={styles.text}>Дата</p>
-      </div>
-      <div className={styles.tableRowItemStatus}>
-        <p className={styles.text}>Статус</p>
-      </div>
-      <div className={styles.tableRowItemPositions}>
-        <p className={styles.text}>Позиций</p>
-      </div>
-      <div className={styles.tableRowItemSumma}>
-        <p className={styles.text}>Cумма</p>
-      </div>
-      <div className={styles.tableRowItemFIO}>
-        <p className={styles.text}>ФИО покупателя</p>
-      </div>
-    </div>
+    <TableHeaderRow size='large'>
+      <TableHeaderColumnWithCheckBox onChange={handleCheckBoxChange} />
+      <TableHeaderColumn size='medium' onClick={() => dispatch(sortChange('number'))} sorting={headerGridSort.find((header) => header.field === 'number').sort}>#</TableHeaderColumn>
+      <TableHeaderColumn size='large' onClick={() => dispatch(sortChange('date'))} sorting={headerGridSort.find((header) => header.field === 'date').sort}>Дата</TableHeaderColumn>
+      <TableHeaderColumn size='large' onClick={() => dispatch(sortChange('status'))} sorting={headerGridSort.find((header) => header.field === 'status').sort}>Статус</TableHeaderColumn>
+      <TableHeaderColumn size='medium' onClick={() => dispatch(sortChange('positions'))} sorting={headerGridSort.find((header) => header.field === 'positions').sort}>Позиций</TableHeaderColumn>
+      <TableHeaderColumn size='large' onClick={() => dispatch(sortChange('summa'))} sorting={headerGridSort.find((header) => header.field === 'summa').sort}>Cумма</TableHeaderColumn>
+      <TableHeaderColumn size='auto' onClick={() => dispatch(sortChange('fio'))} sorting={headerGridSort.find((header) => header.field === 'fio').sort}>ФИО покупателя</TableHeaderColumn>
+    </TableHeaderRow>
   )
 }

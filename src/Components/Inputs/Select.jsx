@@ -1,21 +1,14 @@
 import styles from 'Components/Inputs/Select.module.css'
 import React, { useState, useEffect } from 'react'
 import propTypes from 'prop-types'
-import { nanoid } from 'nanoid'
 
 export function Select ({ items, currentValue, onChange }) {
   const [value, setvalue] = useState('')
 
   const options = items.map((item) => {
-    if (value.toString() === item.key) {
-      return (
-        <option key={nanoid()} selected value={item.key}>{item.value}</option>
-      )
-    } else {
-      return (
-        <option key={nanoid()} value={item.key}>{item.value}</option>
-      )
-    }
+    return (
+      <option key={item.key} value={item.key}>{item.value}</option>
+    )
   })
 
   useEffect(() => {
@@ -31,6 +24,7 @@ export function Select ({ items, currentValue, onChange }) {
   return (
     <div className={styles.inputPanel}>
       <select
+        value={value}
         className={styles.inputStyle}
         onChange={handleChange}
       >
@@ -41,10 +35,16 @@ export function Select ({ items, currentValue, onChange }) {
 }
 
 Select.propTypes = {
-  currentValue: propTypes.string,
+  currentValue: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.number
+  ]),
   items: propTypes.arrayOf(
     propTypes.shape({
-      key: propTypes.number,
+      key: propTypes.oneOfType([
+        propTypes.string,
+        propTypes.number
+      ]),
       value: propTypes.string
     })
   ),

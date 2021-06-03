@@ -10,14 +10,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateOrder } from 'features/data/dataSlice'
 import { Select } from 'Components/Inputs/Select'
 import { EditOrderTableGrid } from 'Components/window/EditOrderTableGrid'
+import { EditOrderTableFooter } from 'Components/window/EditOrderTableFooter'
 
 export function EditOrder ({ show, onClose, orderForEdit }) {
   const dispatch = useDispatch()
-  const [fio, setfio] = useState('')
-  const [status, setstatus] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [status, setStatus] = useState('')
+  const [code, setCode] = useState('')
+  const [isCodeError, setIsCodeError] = useState(false)
+  const [textCodeError, setTextCodeError] = useState('')
   const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
 
-  const [StyleLoading, setStyleLoading] = useState('')
+  const [styleLoading, setStyleLoading] = useState('')
 
   const isLoading = useSelector((state) => state.data.isLoadingUpdate)
   // const isSuccess = useSelector((state) => state.data.isSuccessUpdate)
@@ -40,11 +44,12 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
 
   useEffect(() => {
     if (orderForEdit.fio) {
-      setfio(orderForEdit.fio)
+      setFullName(orderForEdit.fio)
     }
     if (orderForEdit.status) {
-      setstatus(orderForEdit.status.toString())
+      setStatus(orderForEdit.status.toString())
     }
+    setCode('')
   }, [orderForEdit])
 
   function handleClose () {
@@ -52,18 +57,31 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
   }
 
   function handleClickEditOrder () {
-    const order = { ...orderForEdit }
-    order.fio = fio
-    order.status = status
-    dispatch(updateOrder(order))
+    console.log(code)
+    if (code === '11111') {
+      setIsCodeError(false)
+      setTextCodeError('')
+      const order = { ...orderForEdit }
+      order.fio = fullName
+      order.status = status
+      console.log(order)
+      dispatch(updateOrder(order))
+    } else {
+      setIsCodeError(true)
+      setTextCodeError(code === '' ? 'Код подтверждения не заполнен' : 'Код подтверждения не верен')
+    }
   }
 
-  function handleFioChange (value) {
-    setfio(value)
+  function handleFioChange ({ target: { value: currentValue } }) {
+    setFullName(currentValue)
   }
 
-  function handleStatusChange (value) {
-    setstatus(value)
+  function handleStatusChange ({ target: { value: currentValue } }) {
+    setStatus(currentValue)
+  }
+
+  function handleCodeChange ({ target: { value: currentValue } }) {
+    setCode(currentValue)
   }
 
   return (
@@ -92,13 +110,14 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
             type='disabled'
             placeholder='ФИО покупателя'
             caption='ФИО покупателя'
-            valueInput={fio}
+            valueInput={fullName}
             onChange={handleFioChange}
           />
         </div>
         <div className={styles.table}>
           <EditOrderTableHeader />
           <EditOrderTableGrid items={orderForEdit.orderItems} />
+          <EditOrderTableFooter price={orderForEdit.summa} />
         </div>
         <div className={styles.privilage}>
           <InputsWithLabel
@@ -119,12 +138,16 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
           <InputsWithLabel
             placeholder='Код подтверждения'
             caption='Код подтверждения'
+            isError={isCodeError}
+            onChange={handleCodeChange}
+            valueInput={code}
           />
         </div>
 
       </div>
       <div className={styles.footer}>
-        <div className={StyleLoading}>
+        <p className={styles.textError}>{textCodeError}</p>
+        <div className={styleLoading}>
           <IconRotate />
         </div>
         <div className={styles.buttonUpdate}>
@@ -146,6 +169,10 @@ EditOrder.propTypes = {
     fio: propTypes.string,
     status: propTypes.number,
     privilage: propTypes.string,
+    summa: propTypes.oneOfType([
+      propTypes.string,
+      propTypes.number
+    ]),
     orderItems: propTypes.arrayOf(
       propTypes.shape({
         name: propTypes.string

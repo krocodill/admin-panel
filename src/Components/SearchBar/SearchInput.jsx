@@ -4,19 +4,18 @@ import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 
 export function SearchInput ({ placeholder, onChange, onReset }) {
-  const [value, setvalue] = useState('')
-  const [isCloseButtonVisisble, setisCloseButtonVisisble] = useState(false)
+  const [value, setValue] = useState('')
+  const [isCloseButtonVisisble, setIsCloseButtonVisisble] = useState(false)
 
   function handleReset () {
-    setvalue('')
-    setisCloseButtonVisisble(false)
+    setValue('')
+    setIsCloseButtonVisisble(false)
     onReset()
   }
 
-  function handleChange (event) {
-    const { target: { value: currentValue } } = event
-    setvalue(currentValue)
-    setisCloseButtonVisisble(value !== '')
+  function handleChange ({ target: { value: currentValue } }) {
+    setValue(currentValue)
+    setIsCloseButtonVisisble(value !== '')
     onChange(event)
   }
 

@@ -1,5 +1,5 @@
-import styles from 'Components/Tables/TableGrid.module.css'
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   orderCheckBoxChecked,
@@ -7,53 +7,80 @@ import {
   setCountPage,
   setCurrentPage
 } from 'features/data/dataSlice'
-import { CheckBox } from 'Components/CheckBox/CheckBox'
-import PropTypes from 'prop-types'
+
+import { TableGridColumn } from 'Components/Tables/TableGridColumn'
+import { TableGridRowText } from 'Components/Tables/TableGridRowText'
+import { TableGridRowCheckBox } from 'Components/Tables/TableGridRowCheckBox'
+import { TableGridRowState } from 'Components/Tables/TableGridRowState'
+import { TableGridRowCurrency } from 'Components/Tables/TableGridRowCurrency'
+import { TableGridRowItem } from 'Components/Tables/TableGridRowItem'
+import { EditOrder } from 'Components/window/EditOrder'
+
+import styles from 'Components/Tables/TableGrid.module.css'
 
 export function TableGrid ({ orders }) {
   const dispatch = useDispatch()
-  const SelectedOrders = useSelector((state) => state.data.selectedOrders)
+  const selectedOrders = useSelector((state) => state.data.selectedOrders)
   const [clientHeight, setclientHeight] = useState(0)
   const [scrollableGrid, setscrollableGrid] = useState(null)
   const currentPage = useSelector((state) => state.data.currentPage)
   const [pageNumber, setpageNumber] = useState(1)
+  const [showEditOrder, setshowEditOrder] = useState(false)
+  const [orderForEdit, setorderForEdit] = useState({})
+
+  function handleChangeCheckBox (e, key) {
+    if (e.target.checked) {
+      dispatch(orderCheckBoxChecked(key))
+    } else {
+      dispatch(orderCheckBoxUnChecked(key))
+    }
+  }
+
+  function handleDblClickEditOrder (event, key) {
+    const orderFind = orders.find(order => order.id === key)
+    setorderForEdit(orderFind)
+    setshowEditOrder(true)
+  }
 
   const Orders = orders.map((order) => (
-    <div className={styles.rowItem} key={order.id}>
-      <div className={styles.rowItemCheckBox}>
-        <div className={styles.checkBox}>
-          <CheckBox
-            checked={SelectedOrders.indexOf(order.id) !== -1}
-            OnChecked={() => dispatch(orderCheckBoxChecked(order.id))}
-            OnUnChecked={() => dispatch(orderCheckBoxUnChecked(order.id))}
-          />
-        </div>
-      </div>
-      <div className={styles.rowItemNumber}>
-        <p className={styles.text}>{order.number}</p>
-      </div>
-      <div className={styles.rowItemDate}>
-        <p className={styles.text}>{order.date}</p>
-      </div>
-      <div className={styles.rowItemStatus}>
-        <p className={styles.text}>{order.status}</p>
-      </div>
-      <div className={styles.rowItemPositions}>
-        <p className={styles.text}>{order.positions}</p>
-      </div>
-      <div className={styles.rowItemSumma}>
-        <p className={styles.text}>{order.summa}</p>
-      </div>
-      <div className={styles.rowItemFIO}>
-        <p className={styles.text}>{order.fio}</p>
-      </div>
-    </div>
+    <TableGridRowItem key={order.id} onDoubleClick={(event, data) => handleDblClickEditOrder(event, order.id)}>
+      <TableGridColumn size='small'>
+        <TableGridRowCheckBox
+          checked={selectedOrders.indexOf(order.id) !== -1}
+          identifier={order.id}
+          onChange={handleChangeCheckBox}
+        />
+      </TableGridColumn>
+      <TableGridColumn size='medium'>
+        <TableGridRowText>{order.number}</TableGridRowText>
+      </TableGridColumn>
+      <TableGridColumn size='large'>
+        <TableGridRowText>{order.date}</TableGridRowText>
+      </TableGridColumn>
+      <TableGridColumn size='large'>
+        <TableGridRowState value={order.status} />
+      </TableGridColumn>
+      <TableGridColumn size='medium'>
+        <TableGridRowText>{order.positions}</TableGridRowText>
+      </TableGridColumn>
+      <TableGridColumn size='large'>
+        <TableGridRowCurrency>{order.summa}</TableGridRowCurrency>
+      </TableGridColumn>
+      <TableGridColumn size='auto'>
+        <TableGridRowText>{order.fio}</TableGridRowText>
+      </TableGridColumn>
+    </TableGridRowItem>
   ))
+
+  function handleCloseEditOrder () {
+    setshowEditOrder(false)
+  }
 
   function callbackRef (input) {
     if (input) {
+      const countPage = input.clientHeight === 0 ? 1 : Math.floor(input.scrollHeight / input.clientHeight)
       dispatch(
-        setCountPage(Math.floor(input.scrollHeight / input.clientHeight))
+        setCountPage(countPage)
       )
       setclientHeight(input.clientHeight)
       setscrollableGrid(input)
@@ -81,8 +108,10 @@ export function TableGrid ({ orders }) {
 
   return (
     <div ref={callbackRef} className={styles.tableGrid} onScroll={handleScroll}>
+      <EditOrder show={showEditOrder} onClose={handleCloseEditOrder} orderForEdit={orderForEdit} />
       {Orders}
     </div>
+
   )
 }
 

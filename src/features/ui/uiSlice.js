@@ -8,27 +8,39 @@ export const uiSlice = createSlice({
     stateOfOrders: [
       {
         key: '1',
-        value: 'Новый'
+        value: 'Новый',
+        colorIcon: 'orange',
+        icon: 'Dot'
       },
       {
         key: '2',
-        value: 'Рассчет'
+        value: 'Рассчет',
+        colorIcon: 'blue',
+        icon: 'Dot'
       },
       {
         key: '3',
-        value: 'Подтвержден'
+        value: 'Подтвержден',
+        colorIcon: 'green',
+        icon: 'Dot'
       },
       {
         key: '4',
-        value: 'Отложен'
+        value: 'Отложен',
+        colorIcon: 'orange',
+        icon: 'Dot'
       },
       {
         key: '5',
-        value: 'Выполнен'
+        value: 'Выполнен',
+        colorIcon: 'green',
+        icon: 'Checkmark'
       },
       {
         key: '6',
-        value: 'Отменен'
+        value: 'Отменен',
+        colorIcon: 'grey',
+        icon: 'Abort'
       }
     ]
   },

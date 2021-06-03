@@ -1,18 +1,43 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { client } from '../../api/cleint'
 
+export const sortingASC = 'ASC'
+export const sortingDESC = 'DESC'
+export const sortingNONE = 'NONE'
+
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   const response = await client.post('/fakeApi/orders')
   return response.orders
 })
 
 export const updateOrder = createAsyncThunk('order/Order', async (order) => {
+  console.log(order)
   const response = await client.post('/fakeApi/order/', JSON.stringify(order))
   return response.order
 })
 
+const orderAsc = (valueA, valueB) => {
+  if (valueA < valueB) {
+    return -1
+  }
+  if (valueA > valueB) {
+    return 1
+  }
+  return 0
+}
+
+const orderDesc = (valueA, valueB) => {
+  if (valueB < valueA) {
+    return -1
+  }
+  if (valueB > valueA) {
+    return 1
+  }
+  return 0
+}
+
 export const filterOrders = (params) => {
-  let result = params.orders
+  let result = [...params.orders]
   if (params.filterFIOorNumber) {
     result = result.filter(
       (order) =>
@@ -27,6 +52,7 @@ export const filterOrders = (params) => {
       return date >= filterDate
     })
   }
+
   if (params.dateOrderTo) {
     result = result.filter((order) => {
       const filterDate = new Date(params.dateOrderTo)
@@ -35,15 +61,14 @@ export const filterOrders = (params) => {
     })
   }
 
-  if (params.statusFilter) {
+  if (params.statusFilter && params.statusFilter.length > 0) {
     result = result.filter((order) => {
-      return parseInt(order.status) === parseInt(params.statusFilter)
+      return params.statusFilter.includes(order.status.toString())
     })
   }
 
   if (params.priceFrom) {
     result = result.filter((order) => {
-      console.log(parseFloat(parseFloat(order.summa), params.priceFrom))
       return parseFloat(order.summa) >= parseFloat(params.priceFrom)
     })
   }
@@ -51,6 +76,20 @@ export const filterOrders = (params) => {
   if (params.priceTo) {
     result = result.filter((order) => {
       return parseFloat(order.summa) <= parseFloat(params.priceTo)
+    })
+  }
+  if (params.sortArray.length > 0) {
+    result.sort((valueA, valueB) => {
+      let resultSort = 0
+      params.sortArray.forEach((element) => {
+        if (element.sort === sortingASC) {
+          resultSort = resultSort || orderAsc(valueA[element.field], valueB[element.field])
+        }
+        if (element.sort === sortingDESC) {
+          resultSort = resultSort || orderDesc(valueA[element.field], valueB[element.field])
+        }
+      })
+      return resultSort
     })
   }
 
@@ -80,7 +119,34 @@ export const dataSlice = createSlice({
     dateOrderTo: null,
     statusFilter: null,
     priceFrom: null,
-    priceTo: null
+    priceTo: null,
+    sortArray: [],
+    headerGridSort: [
+      {
+        field: 'number',
+        sort: sortingNONE
+      },
+      {
+        field: 'date',
+        sort: sortingNONE
+      },
+      {
+        field: 'status',
+        sort: sortingNONE
+      },
+      {
+        field: 'positions',
+        sort: sortingNONE
+      },
+      {
+        field: 'summa',
+        sort: sortingNONE
+      },
+      {
+        field: 'fio',
+        sort: sortingNONE
+      }
+    ]
   },
   reducers: {
     filterFioOrNumber: (state, action) => {
@@ -90,7 +156,7 @@ export const dataSlice = createSlice({
     },
     filterExtended: (state, action) => {
       state.dateOrderFrom = action.payload.dateOrderFrom
-      state.dateOrderto = action.payload.dateOrderto
+      state.dateOrderTo = action.payload.dateOrderTo
       state.statusFilter = action.payload.statusFilter
       state.priceFrom = action.payload.priceFrom
       state.priceTo = action.payload.priceTo
@@ -128,6 +194,40 @@ export const dataSlice = createSlice({
     },
     setCountPage: (state, action) => {
       state.allPages = action.payload
+    },
+    sortChange: (state, action) => {
+      let newsortArray = state.sortArray.length === 0 ? [] : [...state.sortArray]
+      const index = newsortArray.findIndex((sort) => { return sort.field === action.payload })
+      if (index > -1) {
+        if (newsortArray[index].sort === sortingDESC) {
+          newsortArray[index] = {
+            ...newsortArray[index],
+            sort: sortingNONE
+          }
+        }
+        if (newsortArray[index].sort === sortingASC) {
+          newsortArray[index] = {
+            ...newsortArray[index],
+            field: action.payload,
+            sort: sortingDESC
+          }
+        }
+      } else {
+        newsortArray = [
+          ...newsortArray,
+          {
+            field: action.payload,
+            sort: sortingASC
+          }
+        ]
+      }
+      const newIndex = newsortArray.findIndex((sort) => { return sort.field === action.payload })
+      state.headerGridSort.find((header) => header.field === action.payload).sort = newsortArray[newIndex].sort
+      if (newsortArray[newIndex].sort === sortingNONE) {
+        newsortArray.splice(index, 1)
+      }
+      state.sortArray = newsortArray
+      state.filtredOrders = filterOrders(state)
     }
   },
   extraReducers: {
@@ -164,8 +264,8 @@ export const dataSlice = createSlice({
       state.isLoadingUpdate = false
       state.isSuccessUpdate = true
       state.isErrorUpdate = false
-      const index = state.orders.findIndex((e) => e.id === action.id)
-      state.orders[index] = action
+      const index = state.orders.findIndex((e) => e.id === action.payload.id)
+      state.orders[index] = action.payload
       state.filtredOrders = filterOrders(state)
     },
     [updateOrder.rejected]: (state, action) => {
@@ -173,6 +273,7 @@ export const dataSlice = createSlice({
       state.isLoadingUpdate = false
       state.isSuccessUpdate = false
       state.isErrorUpdate = true
+      console.log(action.error.message)
     }
   }
 })
@@ -187,7 +288,8 @@ export const {
   orderCheckBoxUnChecked,
   orderCheckBoxCheckedAll,
   orderCheckBoxUnCheckedAll,
-  setCurrentPage
+  setCurrentPage,
+  sortChange
 } = dataSlice.actions
 
 // export const selectAllOrders = state => state.orders

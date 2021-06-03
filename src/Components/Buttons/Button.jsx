@@ -1,18 +1,18 @@
-import styles from 'Components/Buttons/Button.module.css'
 import React from 'react'
-import { Icon } from 'Components/Icons/Icon'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
+import { Icon } from 'Components/Icons/Icon'
+import styles from 'Components/Buttons/Button.module.css'
 
 export function Button ({ size, textColor, icon, color, onClick, children }) {
-  const ButtonName = styles[color + 'Button']
-  const buttonSizeName = styles[size + 'Size']
-  const buttonTextColorName = styles['textButton' + textColor]
+  const ButtonStyleName = styles[`${color}Button`]
+  const buttonSizeStyleName = styles[`${size}Size`]
+  const buttonTextColorName = styles[`textButton${textColor}`]
 
   const typeButtonStyleName = classNames({
     [styles.Button]: true,
-    [ButtonName]: true,
-    [buttonSizeName]: true
+    [ButtonStyleName]: true,
+    [buttonSizeStyleName]: true
   })
 
   const textButtonStyleName = classNames({
@@ -20,8 +20,8 @@ export function Button ({ size, textColor, icon, color, onClick, children }) {
   })
 
   return (
-    <div className={typeButtonStyleName}>
-      <button className={textButtonStyleName} onClick={onClick}>
+    <div className={typeButtonStyleName} onClick={onClick}>
+      <button className={textButtonStyleName}>
         <Icon icon={icon} color={textColor} />
         {children}
       </button>

@@ -29,6 +29,7 @@
 }
 
 .inputStatus {
+  display: flex;
   width: 12rem;
   padding-left: 0.5rem;
   display: flex;

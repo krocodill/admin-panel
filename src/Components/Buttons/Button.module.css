@@ -4,6 +4,7 @@
   border-radius: 0.25rem;
   align-content: center;
   align-items: stretch;
+  cursor: pointer;
 }
 
 .BlueButton {
@@ -25,6 +26,7 @@
   color: var(--white-color);
   text-align: center;
   margin: auto;
+  cursor: pointer;
 }
 
 .textButtonPrimary {
@@ -34,15 +36,17 @@
   color: #459df5;
   text-align: center;
   margin: auto;
+  cursor: pointer;
 }
 
 .textButtonSecondary {
   display: flex;
   background: transparent;
   border: none;
-  color: var(--red-color);
+  color: var(--black-color);
   text-align: center;
   margin: auto;
+  cursor: pointer;
 }
 
 .mediumSize {

@@ -1,6 +1,9 @@
 .lightTheme {
   --blue-color: #459DF5;
   --red-color: #F53152;
+  --orange-color: #FF8C56;
+  --green-color: #0FB864;
+  --grey-color: #8055FF;
   --black-color: #000;
   --white-color: #FFF;
   --white-blue: #EBF0F5;
@@ -13,6 +16,9 @@
 .darkTheme {
   --blue-color: #459DF5;
   --red-color: #F53152;
+  --orange-color: #FF8C56;
+  --green-color: #0FB864;
+  --grey-color: #8055FF;
   --black-color: #BCC4CC;
   --white-color: #2B2D33;
   --white-blue: #1F2629;

@@ -69,7 +69,6 @@ new Server({
 
     this.get('/order/:id', (schema, req) => {
       const order = schema.orders.find(req.params.id)
-      console.log(order.orderItems)
       return order
     })
   },
@@ -87,10 +86,13 @@ new Server({
         return nanoid()
       },
       number() {
-        return faker.datatype.number()
+        return faker.datatype.number({
+          min: 1000000,
+          max: 9999999,
+        })
       },
       date() {
-        return faker.date.between('2019-01-01', '2022-01-01')
+        return faker.date.between('2019-01-01', '2022-01-01').toLocaleString()
       },
       status() {
         return faker.datatype.number({
@@ -105,7 +107,10 @@ new Server({
         })
       },
       summa() {
-        return faker.commerce.price()
+        return faker.datatype.number({
+          min: 1,
+          max: 9999999999,
+        })
       },
       fio() {
         return `${faker.name.lastName()} ${faker.name.firstName()} ${faker.name.middleName()}`
@@ -118,7 +123,16 @@ new Server({
         ])
       },
       afterCreate(order, server) {
-        server.createList('orderItem', order.positions , { order })
+        const price = server.createList('orderItem', order.positions , { order }).reduce(
+          (a, b) => {
+            return a + parseFloat(b.price)
+          }, 0
+        )
+        order.update(
+          {
+            summa: price
+          }
+        )
       },
     }),
     orderItem: Factory.extend({
@@ -132,7 +146,10 @@ new Server({
         return faker.commerce.productName()
       },
       price() {
-        return faker.commerce.price()
+        return faker.datatype.number({
+          min: 1000,
+          max: 100000,
+        })
       },
       order: association(),
     }),

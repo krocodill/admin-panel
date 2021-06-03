@@ -38,6 +38,18 @@
   display: none;
 }
 
+.inputWithIcon::-webkit-clear-button {
+  display: none;
+}
+
+.inputWithIcon::-webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  width: 10rem;
+  position: fixed;
+}
+
 .inputWithIcon::-webkit-datetime-edit-text{
   color: var(--black-color);
   background: var(--white-color);

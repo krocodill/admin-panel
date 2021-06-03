@@ -20,6 +20,24 @@
   align-self: flex-start;
 }
 
+.iconDot {
+  display: flex;
+  mask: url("../../icons/dot.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconAbort {
+  display: flex;
+  mask: url("../../icons/abort.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
 .iconFilter {
   display: flex;
   mask: url("icons/filter.svg");
@@ -74,6 +92,14 @@
   align-self: flex-start;
 }
 
+.iconArrow{
+  display: flex;
+  mask: url("../../icons/v_arrow.svg");
+  height: 16px;
+  width: 16px;
+  background: var(--white-color);
+}
+
 .white {
   background: #ffffff;
 }
@@ -84,4 +110,28 @@
 
 .secondary {
   background: #000000;
+}
+
+.orange {
+  background: var(--orange-color);
+}
+
+.green {
+  background: var(--green-color);
+}
+
+.grey {
+  background: var(--grey-color);
+}
+
+.blue {
+  background: var(--blue-color);
+}
+
+.lightBlue {
+  background: var(--ligth-blue);
+}
+
+.rotate_180{
+  transform: rotate(-180deg);
 }

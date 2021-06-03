@@ -1,18 +1,13 @@
-import styles from 'Components/window/EditOrderTableHeader.module.css'
 import React from 'react'
+import { TableHeaderRow } from 'Components/Tables/TableHeaderRow'
+import { TableHeaderColumn } from 'Components/Tables/TableHeaderColumn'
 
 export function EditOrderTableHeader () {
   return (
-    <div className={styles.header}>
-      <div className={styles.tableRowItemArticle}>
-        <p className={styles.text}>Артикул</p>
-      </div>
-      <div className={styles.tableRowItemName}>
-        <p className={styles.text}>Наименование</p>
-      </div>
-      <div className={styles.tableRowItemPrice}>
-        <p className={styles.text}>Цена</p>
-      </div>
-    </div>
+    <TableHeaderRow size='small'>
+      <TableHeaderColumn size='medium'>Артикул</TableHeaderColumn>
+      <TableHeaderColumn size='xl'>Наименование</TableHeaderColumn>
+      <TableHeaderColumn size='auto'>Цена</TableHeaderColumn>
+    </TableHeaderRow>
   )
 }
