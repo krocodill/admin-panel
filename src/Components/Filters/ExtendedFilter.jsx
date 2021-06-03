@@ -12,63 +12,37 @@ import { CheckBoxMultiSelect } from 'Components/CheckBox/CheckBoxMultiSelect'
 
 export function ExtendedFilter ({ visible }) {
   const dispatch = useDispatch()
-  const [dateFrom, setdateFrom] = useState('')
-  const [dateTo, setdateTo] = useState('')
-  const [status, setstatus] = useState([])
-  const [priceFrom, setpriceFrom] = useState('')
-  const [priceTo, setpriceTo] = useState('')
+  const [form, setForm] = useState({
+    dateOrderFrom: '',
+    dateOrderTo: '',
+    statusFilter: [],
+    priceFrom: '',
+    priceTo: ''
+  })
+
   const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
 
   const visiblePanelStyleName = classNames({
-    [styles.panel]: visible,
+    [styles.panel]: true,
     [styles.panelInVisible]: !visible
   })
 
   function handleClickApplyFilter () {
-    const filterObject = {
-      dateOrderFrom: dateFrom,
-      dateOrderTo: dateTo,
-      statusFilter: status,
-      priceFrom: priceFrom,
-      priceTo: priceTo
-    }
-    dispatch(filterExtended(filterObject))
+    console.log({ ...form })
+    dispatch(filterExtended({ ...form }))
   }
 
-  function handleChangeDateFrom ({ target: { value } }) {
-    setdateFrom(value)
+  function handleChangeInput ({ target: { value, name } }) {
+    setForm({ ...form, [name]: value })
   }
 
-  function handleChangeDateTo ({ target: { value } }) {
-    setdateTo(value)
+  function handleResetInput (name) {
+    console.log(name)
+    setForm({ ...form, [name]: '' })
   }
 
   function handleChangeStatus (value) {
-    setstatus([...value])
-  }
-
-  function handleChangePriceFrom ({ target: { value } }) {
-    setpriceFrom(value)
-  }
-
-  function handleChangePriceTo ({ target: { value } }) {
-    setpriceTo(value)
-  }
-
-  function handleResetDateFrom () {
-    setdateFrom('')
-  }
-
-  function handleResetDateTo () {
-    setdateTo('')
-  }
-
-  function handleResetPriceFrom () {
-    setpriceFrom('')
-  }
-
-  function handleResetPriceTo () {
-    setpriceTo('')
+    setForm({ ...form, statusFilter: [...value] })
   }
 
   return (
@@ -77,15 +51,16 @@ export function ExtendedFilter ({ visible }) {
         <div className={styles.inputDateFrom}>
           <InputsWithLabel
             type='date'
+            name='dateOrderFrom'
             placeholder='dd.mm.dddd'
             labeltext='с'
             caption='Дата оформления'
-            onChange={handleChangeDateFrom}
-            onReset={handleResetDateFrom}
+            onChange={handleChangeInput}
+            onReset={handleResetInput}
           />
         </div>
         <div className={styles.inputDateTo}>
-          <Input type='date' placeholder='dd.mm.dddd' labeltext='по' onChange={handleChangeDateTo} onReset={handleResetDateTo} />
+          <Input type='date' name='dateOrderTo' placeholder='dd.mm.dddd' labeltext='по' onChange={handleChangeInput} onReset={handleResetInput} />
         </div>
         <div className={styles.inputStatus}>
           <CheckBoxMultiSelect
@@ -99,15 +74,16 @@ export function ExtendedFilter ({ visible }) {
         <div className={styles.inputSummaFrom}>
           <InputsWithLabel
             type='number'
+            name='priceFrom'
             placeholder='Р'
             labeltext='от'
             caption='Сумма заказа'
-            onChange={handleChangePriceFrom}
-            onReset={handleResetPriceFrom}
+            onChange={handleChangeInput}
+            onReset={handleResetInput}
           />
         </div>
         <div className={styles.inputSummaTo}>
-          <Input type='number' placeholder='Р' labeltext='до' onChange={handleChangePriceTo} onReset={handleResetPriceTo} />
+          <Input type='number' name='priceTo' placeholder='Р' labeltext='до' onChange={handleChangeInput} onReset={handleResetInput} />
         </div>
         <div className={styles.buttonApplay}>
           <Button textColor='Primary' onClick={handleClickApplyFilter}>

@@ -13,9 +13,8 @@ export function TableHeader () {
   const dispatch = useDispatch()
   const headerGridSort = useSelector((state) => state.data.headerGridSort)
 
-  function handleCheckBoxChange (event) {
-    console.log(event.target.checked)
-    if (event.target.checked) {
+  function handleCheckBoxChange ({ target: { checked } }) {
+    if (checked) {
       dispatch(orderCheckBoxCheckedAll())
     } else {
       dispatch(orderCheckBoxUnCheckedAll())

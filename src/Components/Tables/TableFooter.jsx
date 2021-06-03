@@ -8,27 +8,27 @@ import { ChangeState } from 'Components/window/ChangeState'
 import { TableFooterRow } from 'Components/Tables/TableFooterRow'
 
 export function TableFooter () {
-  const [showAcceptDelete, setshowAcceptDelete] = useState(false)
-  const [showEditOrder, setshowEditOrder] = useState(false)
+  const [showAcceptDelete, setShowAcceptDelete] = useState(false)
+  const [showEditOrder, setShowEditOrder] = useState(false)
 
   const currentPage = useSelector((state) => state.data.currentPage)
   const allPages = useSelector((state) => state.data.allPages)
   const selectedRow = useSelector((state) => state.data.selectedOrdersCount)
   const stateOfOrders = useSelector((state) => state.ui.stateOfOrders)
   function handleClick () {
-    setshowAcceptDelete(true)
+    setShowAcceptDelete(true)
   }
 
   function handleClose () {
-    setshowAcceptDelete(false)
+    setShowAcceptDelete(false)
   }
 
   function handleClickEditOrder () {
-    setshowEditOrder(true)
+    setShowEditOrder(true)
   }
 
   function handleCloseEditOrder () {
-    setshowEditOrder(false)
+    setShowEditOrder(false)
   }
 
   return (

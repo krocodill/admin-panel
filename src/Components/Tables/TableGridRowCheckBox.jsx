@@ -3,12 +3,12 @@ import propTypes from 'prop-types'
 import { CheckBox } from 'Components/CheckBox/CheckBox'
 import styles from 'Components/Tables/TableGridRowCheckBox.module.css'
 
-export function TableGridRowCheckBox ({ children, onChange, checked, identifier }) {
+export function TableGridRowCheckBox ({ children, onChange, checked, name }) {
   return (
     <div className={styles.checkBox}>
       <CheckBox
         checked={checked}
-        identifier={identifier}
+        name={name}
         onChange={onChange}
       >
         {children}
@@ -24,12 +24,12 @@ TableGridRowCheckBox.propTypes = {
   ]),
   onChange: propTypes.func,
   checked: propTypes.bool,
-  identifier: propTypes.string
+  name: propTypes.string
 }
 
 TableGridRowCheckBox.defaultProps = {
   children: '',
   onChange: () => {},
   checked: false,
-  identifier: ''
+  name: ''
 }

@@ -15,11 +15,6 @@
 
 .inputPanelError {
   border: 1px solid #f53152;
-  background: var(--white-color);
-  display: flex;
-  height: 2.5rem;
-  border-radius: 0.25rem;
-  width: 100%;
 }
 
 .innerLabel {
@@ -64,6 +59,7 @@
 }
 
 .closeButton {
+  display: block;
   mask: url("../../icons/x-medium.svg");
   background: #bad8f5;
   height: 16px;
@@ -77,6 +73,7 @@
 }
 
 .disabledIcon {
+  display: block;
   mask: url("../../icons/locked.svg");
   background: var(--black-color);
   height: 16px;

@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react'
 import propTypes from 'prop-types'
 import styles from 'Components/CheckBox/CheckBox.module.css'
 
-export function CheckBox ({ identifier, checked, onChange, children }) {
-  const [value, setvalue] = useState(false)
+export function CheckBox ({ name, checked, onChange, children }) {
+  const [value, setValue] = useState(false)
 
   useEffect(() => {
-    setvalue(checked)
+    setValue(checked)
   }, [checked])
 
-  function handleChange (event) {
-    const { target: { checked: currentValue } } = event
-    setvalue(currentValue)
-    onChange(event, identifier)
+  function handleChange ({ target: { checked } }) {
+    setValue(checked)
+    onChange(event)
   }
   return (
     <label className={styles.container}>
       <input
+        name={name}
         type='checkbox'
         checked={value}
         onChange={handleChange}
@@ -28,14 +28,14 @@ export function CheckBox ({ identifier, checked, onChange, children }) {
 }
 
 CheckBox.propTypes = {
-  identifier: propTypes.string,
+  name: propTypes.string,
   checked: propTypes.bool,
   onChange: propTypes.func,
   children: propTypes.string
 }
 
 CheckBox.defaultProps = {
-  identifier: '',
+  name: '',
   checked: false,
   onChange: () => {},
   children: ''

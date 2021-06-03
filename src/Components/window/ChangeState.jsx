@@ -26,16 +26,16 @@ export function ChangeState ({ show, onClose, items }) {
     onClose()
   }
 
-  const buttons = items.map((item) => {
-    return (
-      <Button key={item.key} size='big' textColor='Secondary' onClick={() => handleClick(item.key)}>{item.value}</Button>
-    )
-  })
-
   return (
     <div className={showChangeTheme}>
       <div className={styles.content}>
-        {buttons}
+        {
+          items.map((item) => {
+            return (
+              <Button key={item.key} size='big' textColor='Secondary' onClick={() => handleClick(item.key)}>{item.value}</Button>
+            )
+          })
+        }
       </div>
     </div>
   )

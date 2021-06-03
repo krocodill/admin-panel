@@ -10,7 +10,7 @@ export function ChangePage ({ show, onClose, positionX, positionY }) {
   const dispatch = useDispatch()
 
   const [Value, setValue] = useState(1)
-  const [currentDiv, setcurrentDiv] = useState(null)
+  const [currentDiv, setСurrentDiv] = useState(null)
 
   const showChangeTheme = classNames({
     [styles.modal]: true,
@@ -35,7 +35,7 @@ export function ChangePage ({ show, onClose, positionX, positionY }) {
 
   function callbackref (input) {
     if (input) {
-      setcurrentDiv(input)
+      setСurrentDiv(input)
     }
   }
 

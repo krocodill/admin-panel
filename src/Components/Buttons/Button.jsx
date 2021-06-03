@@ -5,13 +5,13 @@ import { Icon } from 'Components/Icons/Icon'
 import styles from 'Components/Buttons/Button.module.css'
 
 export function Button ({ size, textColor, icon, color, onClick, children }) {
-  const ButtonStyleName = styles[`${color}Button`]
+  const buttonStyleName = styles[`${color}Button`]
   const buttonSizeStyleName = styles[`${size}Size`]
   const buttonTextColorName = styles[`textButton${textColor}`]
 
   const typeButtonStyleName = classNames({
     [styles.Button]: true,
-    [ButtonStyleName]: true,
+    [buttonStyleName]: true,
     [buttonSizeStyleName]: true
   })
 

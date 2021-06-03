@@ -57,7 +57,6 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
   }
 
   function handleClickEditOrder () {
-    console.log(code)
     if (code === '11111') {
       setIsCodeError(false)
       setTextCodeError('')
@@ -82,6 +81,10 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
 
   function handleCodeChange ({ target: { value: currentValue } }) {
     setCode(currentValue)
+  }
+
+  function handleCodeReset () {
+    setCode('')
   }
 
   return (
@@ -140,6 +143,7 @@ export function EditOrder ({ show, onClose, orderForEdit }) {
             caption='Код подтверждения'
             isError={isCodeError}
             onChange={handleCodeChange}
+            onReset={handleCodeReset}
             valueInput={code}
           />
         </div>

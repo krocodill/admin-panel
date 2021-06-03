@@ -12,7 +12,8 @@ export function SearchPanel () {
     <div className={styles.searchPanel}>
       <SearchInput
         placeholder='Номер заказа или ФИО'
-        onChange={(value) => dispatch(filterFioOrNumber(value))}
+        onChange={({ target: { value } }) => dispatch(filterFioOrNumber(value))}
+        onReset={() => dispatch(filterFioOrNumber(''))}
       />
       <div className={styles.buttonFilter}>
         <Button

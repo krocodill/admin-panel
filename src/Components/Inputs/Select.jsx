@@ -3,21 +3,15 @@ import React, { useState, useEffect } from 'react'
 import propTypes from 'prop-types'
 
 export function Select ({ items, currentValue, onChange }) {
-  const [value, setvalue] = useState('')
-
-  const options = items.map((item) => {
-    return (
-      <option key={item.key} value={item.key}>{item.value}</option>
-    )
-  })
+  const [value, setValue] = useState('')
 
   useEffect(() => {
-    setvalue(currentValue)
+    setValue(currentValue)
   }, [currentValue])
 
   function handleChange (event) {
     const { target: { value: currentValue } } = event
-    setvalue(currentValue)
+    setValue(currentValue)
     onChange(event)
   }
 
@@ -28,7 +22,13 @@ export function Select ({ items, currentValue, onChange }) {
         className={styles.inputStyle}
         onChange={handleChange}
       >
-        {options}
+        {
+          items.map((item) => {
+            return (
+              <option key={item.key} value={item.key}>{item.value}</option>
+            )
+          })
+        }
       </select>
     </div>
   )

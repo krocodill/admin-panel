@@ -7,8 +7,8 @@ import styles from 'Components/Tables/TableHeaderColumn.module.css'
 
 export function TableHeaderColumn ({ children, size, sorting, onClick }) {
   const ColumnItemSizeName = styles[size + 'Size']
-  const [rotate, setrotate] = useState(0)
-  const [visibleIcon, setvisibleIcon] = useState(false)
+  const [rotate, setRotate] = useState(0)
+  const [visibleIcon, setVisibleIcon] = useState(false)
   const tableColumnItemStyleName = classNames({
     [styles.tableColumnItem]: true,
     [ColumnItemSizeName]: true
@@ -21,12 +21,12 @@ export function TableHeaderColumn ({ children, size, sorting, onClick }) {
 
   useEffect(() => {
     if (sorting === sortingASC) {
-      setrotate(0)
+      setRotate(0)
     }
     if (sorting === sortingDESC) {
-      setrotate(180)
+      setRotate(180)
     }
-    setvisibleIcon(sorting !== sortingNONE)
+    setVisibleIcon(sorting !== sortingNONE)
   }, [sorting])
 
   return (

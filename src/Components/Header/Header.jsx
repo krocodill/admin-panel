@@ -6,17 +6,17 @@ import { ChangeTheme } from 'Components/window/ChangeTheme'
 import { useSelector } from 'react-redux'
 
 export function Header () {
-  const [showChangeTheme, setshowChangeTheme] = useState(false)
+  const [showChangeTheme, setShowChangeTheme] = useState(false)
 
   const theme = useSelector((state) => state.ui.theme)
   const iconName = theme === 'light' ? 'Sun' : 'Moon'
   const themeName = theme === 'light' ? 'Светлая тема' : 'Темная тема'
   function handleClick () {
-    setshowChangeTheme(true)
+    setShowChangeTheme(true)
   }
 
   function handleClose () {
-    setshowChangeTheme(false)
+    setShowChangeTheme(false)
   }
 
   return (

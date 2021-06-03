@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
 import { CheckBox } from 'Components/CheckBox/CheckBox'
@@ -6,12 +6,11 @@ import { Icon } from 'Components/Icons/Icon'
 import styles from './CheckBoxMultiSelect.module.css'
 
 export function CheckBoxMultiSelect ({ items, onChange, defaultValue }) {
-  const [isOpenPopup, setisOpenPopup] = useState(false)
-  const [selectedValues, setselectedValues] = useState([])
-  const [caption, setcaption] = useState(defaultValue)
+  const [isOpenPopup, setIsOpenPopup] = useState(false)
+  const [selectedValues, setSelectedValues] = useState([])
 
   function handleClick () {
-    setisOpenPopup(!isOpenPopup)
+    setIsOpenPopup(!isOpenPopup)
   }
 
   const dropDownStyles = classNames({
@@ -19,43 +18,36 @@ export function CheckBoxMultiSelect ({ items, onChange, defaultValue }) {
     [styles.visible]: isOpenPopup
   })
 
-  function handleChangeCheckBox (e, key) {
-    if (e.target.checked) {
-      setselectedValues([...selectedValues, key])
-      onChange([...selectedValues, key])
+  function handleChangeCheckBox ({ target: { checked, name } }) {
+    console.log(name)
+    if (checked) {
+      setSelectedValues([...selectedValues, name])
+      onChange([...selectedValues, name])
     } else {
-      const index = selectedValues.findIndex((elem) => elem === key)
+      const index = selectedValues.findIndex((elem) => elem === name)
       const selectedValuesNew = [...selectedValues]
       selectedValuesNew.splice(index, 1)
-      setselectedValues(selectedValuesNew)
+      setSelectedValues(selectedValuesNew)
       onChange(selectedValuesNew)
     }
   }
 
-  useEffect(() => {
-    if (selectedValues.length > 0) {
-      setcaption('Значение выбрано')
-    } else {
-      setcaption(defaultValue)
-    }
-  }, [selectedValues])
-
-  const options = items.map((item) => {
-    return (
-      <li key={item.key}><CheckBox identifier={item.key} onChange={handleChangeCheckBox}>{item.value}</CheckBox></li>
-    )
-  })
-
   return (
     <div className={dropDownStyles} onClick={handleClick} tabIndex='100'>
       <div className={styles.text}>
-        <span className={styles.anchor}>{caption}</span>
+        <span className={styles.anchor}>{selectedValues.length ? 'Значение выбрано' : defaultValue}</span>
       </div>
       <div className={styles.button}>
         <Icon icon='Arrow' color='lightBlue' />
       </div>
       <ul className={styles.items}>
-        {options}
+        {
+          items.map((item) => {
+            return (
+              <li key={item.key}><CheckBox name={item.key} onChange={handleChangeCheckBox}>{item.value}</CheckBox></li>
+            )
+          })
+        }
       </ul>
     </div>
   )
