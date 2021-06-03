@@ -1,0 +1,13 @@
+.headerRow {
+    display: flex;
+    width: 100%;
+    background: var(--blue-color);
+}
+
+.smallSize {
+    height: 2.5rem;
+}
+
+.largeSize {
+    height: 3.5rem;
+}

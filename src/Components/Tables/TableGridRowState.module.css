@@ -1,0 +1,15 @@
+.text {
+    display: flex;
+    margin-left: 0.5em;
+    color: var(--black-color);
+}
+
+.state {
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+}
+
+.icon{
+    margin: auto;
+}

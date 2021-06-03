@@ -1,0 +1,134 @@
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 2.5rem;
+    right: 0;
+    width: 40rem;
+    height: 80%;
+    background-color: #fff;
+    box-shadow: var(--dropdown-shadow-box);
+    border-radius: 8px;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--white-color);
+}
+
+.modalVisible{
+    display: flex;
+}
+
+.modalInVisible{
+    display: none;
+}
+
+.header{
+    height: 4.5rem;
+    background: var(--blue-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.caption{
+    margin-left: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cationText{
+    color: var(--ligth-blue);
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+.close{
+    margin: auto 1rem;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--white-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content::-webkit-scrollbar {
+    width: 0.25em;
+    background-color: #f9f9fd;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: #00000057;
+}
+
+.fio{
+    display: flex;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+}
+
+.dateTime{
+    display: flex;
+    margin-right: 1.5rem;
+}
+
+.privilage{
+    display: flex;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+}
+
+.status{
+    display: flex;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+}
+
+.code{
+    display: flex;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-right: 1.5rem;
+}
+
+.footer{
+    height: 4rem;
+    background: var(--white-blue);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.buttonUpdate{
+    width: 10rem;
+    margin-right: 1rem;
+}
+
+.progress{
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+.progressInvisible{
+    display: none;
+}
+
+.textError {
+    color: var(--red-color);
+    margin-right: 1.5rem;
+}

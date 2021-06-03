@@ -1,0 +1,10 @@
+.searchPanel {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.buttonFilter {
+  padding-left: 8px;
+  width: 113px;
+}

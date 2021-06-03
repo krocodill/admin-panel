@@ -1,0 +1,33 @@
+.tableColumnItem{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.text {
+    display: flex;
+    margin-left: 0.5em;
+    color: var(--white-blue);
+}
+
+.smallSize {
+    width: 2rem;
+}
+
+.mediumSize {
+    width: 9rem;
+}
+
+.largeSize {
+    width: 12rem;
+}
+
+.xlSize {
+    width: 20rem;
+}
+
+.autoSize {
+    flex-grow: 1;
+}
+
+

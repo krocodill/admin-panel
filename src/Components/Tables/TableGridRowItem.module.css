@@ -1,0 +1,18 @@
+.rowItem {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid var(--border-table);
+    background-color: var(--white-color);
+}
+
+.rowItem:hover {
+    background-color: var(--white-blue);
+}
+
+.bigSize {
+    height: 3.5rem;
+}
+
+.smallSize {
+    height: 2.5rem;
+}

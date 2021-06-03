@@ -1,0 +1,11 @@
+.tableColumnItem{
+    display: flex;
+    background: var(--blue-color);
+    align-items: center;
+    justify-content: flex-start;
+    width: 2rem;
+}
+
+.checkBox {
+    margin-left: 0.5em;
+}

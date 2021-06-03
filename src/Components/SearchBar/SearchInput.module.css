@@ -1,0 +1,42 @@
+@import url(../../index.css);
+
+.searchBar {
+  border: 1px solid #459df5;
+  display: flex;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  width: 26rem;
+}
+
+.inputWithIcon {
+  border: none;
+  flex: 1;
+  outline: none;
+  color: var(--black-color);
+  background: var(--white-color);
+}
+
+.inputWithIcon::placeholder {
+  color: var(--ligth-blue);
+}
+
+.searchIcon {
+  mask: url("../../icons/search.svg");
+  background: var(--color-blue);
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+}
+
+.closeButton {
+  mask: url("../../icons/x-medium.svg");
+  background: #bad8f5;
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+  align-self: flex-end;
+}
+
+.closeButtonInvisible {
+  display: none;
+}

@@ -1,0 +1,137 @@
+.iconNone {
+  display: none;
+}
+
+.iconXLarge {
+  display: flex;
+  mask: url("icons/x-large.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconCheckmark {
+  display: flex;
+  mask: url("../../icons/checkmark.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconDot {
+  display: flex;
+  mask: url("../../icons/dot.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconAbort {
+  display: flex;
+  mask: url("../../icons/abort.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconFilter {
+  display: flex;
+  mask: url("icons/filter.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconSun {
+  display: flex;
+  mask: url("icons/sun.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconMoon {
+  display: flex;
+  mask: url("icons/moon.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconRefresh {
+  display: flex;
+  mask: url("../../icons/refresh.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconPencil {
+  display: flex;
+  mask: url("../../icons/pencil.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconDelete {
+  display: flex;
+  mask: url("../../icons/bin.svg");
+  height: 16px;
+  width: 16px;
+  margin: 0px 8px;
+  align-self: flex-start;
+}
+
+.iconArrow{
+  display: flex;
+  mask: url("../../icons/v_arrow.svg");
+  height: 16px;
+  width: 16px;
+  background: var(--white-color);
+}
+
+.white {
+  background: #ffffff;
+}
+
+.primary {
+  background: #459df5;
+}
+
+.secondary {
+  background: #000000;
+}
+
+.orange {
+  background: var(--orange-color);
+}
+
+.green {
+  background: var(--green-color);
+}
+
+.grey {
+  background: var(--grey-color);
+}
+
+.blue {
+  background: var(--blue-color);
+}
+
+.lightBlue {
+  background: var(--ligth-blue);
+}
+
+.rotate_180{
+  transform: rotate(-180deg);
+}

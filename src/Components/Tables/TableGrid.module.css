@@ -1,0 +1,89 @@
+.tableGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: 34em;
+}
+
+.tableGrid::-webkit-scrollbar {
+  width: 0.25em;
+  background-color: #f9f9fd;
+}
+
+.tableGrid::-webkit-scrollbar-thumb {
+  background-color: #00000057;
+}
+
+.rowItem {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid var(--border-table);
+}
+
+.checkBox {
+  margin-left: 0.5em;
+}
+
+.rowItemCheckBox {
+  display: flex;
+  width: 4em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemNumber {
+  display: flex;
+  width: 6.75em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemDate {
+  display: flex;
+  width: 11em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemPositions {
+  display: flex;
+  width: 6em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemSumma {
+  display: flex;
+  width: 8em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemFIO {
+  display: flex;
+  flex-grow: 1;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rowItemStatus {
+  display: flex;
+  width: 11em;
+  height: 3.5em;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.text {
+  display: flex;
+  margin-left: 0.5em;
+  color: var(--black-color);
+}

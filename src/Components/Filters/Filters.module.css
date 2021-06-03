@@ -1,0 +1,13 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 32px;
+}
+
+.test {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  width: 500px;
+}

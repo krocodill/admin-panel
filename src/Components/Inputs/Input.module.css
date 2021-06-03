@@ -1,0 +1,87 @@
+@import url(../../index.css);
+
+.inputPanel {
+  border: 1px solid #459df5;
+  display: flex;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  background: var(--white-color);
+}
+
+.inputPanelDisabled {
+  background: var(--ligth-blue);
+}
+
+.inputPanelError {
+  border: 1px solid #f53152;
+}
+
+.innerLabel {
+  align-self: center;
+  margin-right: 0.5rem;
+  margin-left: 0.25rem;
+}
+
+.inputWithIcon {
+  border: none;
+  outline: none;
+  color: var(--black-color);
+  width: 90%;
+  background: var(--white-color);
+}
+.inputWithIcon::-webkit-inner-spin-button {
+  display: none;
+}
+
+.inputWithIcon::-webkit-clear-button {
+  display: none;
+}
+
+.inputWithIcon::-webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  width: 10rem;
+  position: fixed;
+}
+
+.inputWithIcon::-webkit-datetime-edit-text{
+  color: var(--black-color);
+  background: var(--white-color);
+}
+
+.inputWithIcon:disabled{
+  background: var(--ligth-blue);
+}
+
+.inputWithIcon::-webkit-input-placeholder {
+  color: var(--ligth-blue);
+}
+
+.closeButton {
+  display: block;
+  mask: url("../../icons/x-medium.svg");
+  background: #bad8f5;
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+  align-self: flex-end;
+}
+
+.closeButtonInvisible {
+  display: none;
+}
+
+.disabledIcon {
+  display: block;
+  mask: url("../../icons/locked.svg");
+  background: var(--black-color);
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+  align-self: flex-end;
+}
+.disabledIconInvisible {
+  display: none;
+}
