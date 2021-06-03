@@ -25,7 +25,7 @@ export function Select ({ items, currentValue, onChange }) {
         {
           items.map((item) => {
             return (
-              <option key={item.key} value={item.key}>{item.value}</option>
+              <option className={styles.options} key={item.key} value={item.key}>{item.value}</option>
             )
           })
         }

@@ -13,4 +13,9 @@
     color: var(--black-color);
     width: 100%;
     background: var(--white-color);
+    line-height: 2.5rem;
+}
+.options{
+    height: 2.5rem;
+    line-height: 2.5rem;
 }

@@ -27,6 +27,11 @@
   text-align: center;
   margin: auto;
   cursor: pointer;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .textButtonPrimary {
@@ -37,6 +42,11 @@
   text-align: center;
   margin: auto;
   cursor: pointer;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .textButtonSecondary {
@@ -47,6 +57,11 @@
   text-align: center;
   margin: auto;
   cursor: pointer;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .mediumSize {

@@ -1,6 +1,14 @@
-:root {
-  --color-blue: #459df5;
-  --color-black: #000000;
+@font-face {
+  font-family: 'Ubuntu';
   font-size: 13px;
+  src: local('Ubuntu'), url(fonts/Ubuntu-Regular.ttf) format('truetype');
+}
+
+:root {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
 }
 

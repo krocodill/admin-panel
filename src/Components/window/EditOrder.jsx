@@ -1,4 +1,3 @@
-import styles from 'Components/window/EditOrder.module.css'
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import propTypes from 'prop-types'
@@ -11,6 +10,7 @@ import { updateOrder } from 'features/data/dataSlice'
 import { Select } from 'Components/Inputs/Select'
 import { EditOrderTableGrid } from 'Components/window/EditOrderTableGrid'
 import { EditOrderTableFooter } from 'Components/window/EditOrderTableFooter'
+import styles from 'Components/window/EditOrder.module.css'
 
 export function EditOrder ({ show, onClose, orderForEdit }) {
   const dispatch = useDispatch()

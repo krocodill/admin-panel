@@ -18,8 +18,9 @@
 }
 
 .innerLabel {
-  margin: 8px 4px 8px 8px;
-  align-self: flex-start;
+  align-self: center;
+  margin-right: 0.5rem;
+  margin-left: 0.25rem;
 }
 
 .inputWithIcon {
